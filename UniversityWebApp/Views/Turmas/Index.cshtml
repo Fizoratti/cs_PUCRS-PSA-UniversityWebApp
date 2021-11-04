@@ -9,7 +9,7 @@
 
 <form asp-controller="Turmas" asp-action="Index" method="get">
     <div class="mb-3">
-        <input type="text" class="form-control" id="formControlInput" name="searchString">
+        <input type="text" class="form-control" name="searchString" value="@ViewData["CurrentFilter"]">
         <button type="submit" class="btn btn-primary">Pesquisar</button>
     </div>
 </form>

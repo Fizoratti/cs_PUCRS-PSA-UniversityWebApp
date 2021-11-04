@@ -20,9 +20,20 @@ namespace UniversityWebApp.Controllers
         }
 
         // GET: Turmas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Turma.ToListAsync());
+            ViewData["CurrentFilter"] = searchString;
+
+            var turmas = from t in _context.Turma
+                         select t;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                turmas = turmas.Where(t => t.Codcred.Contains(searchString)
+                                    || t.Horario.Contains(searchString)
+                                    || t.Numero.Contains(searchString));
+            }
+            return View(await turmas.AsNoTracking().ToListAsync());
+            // return View(await _context.Turma.ToListAsync());
         }
 
         // GET: Turmas/Details/5

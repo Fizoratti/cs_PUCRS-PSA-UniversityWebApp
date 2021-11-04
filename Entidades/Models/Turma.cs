@@ -10,6 +10,7 @@ namespace Entidades.Models
     {
         public int TurmaID { get; set; }
         public string Codcred { get; set; } // 4645B-04
+        // nome da disciplina cadê?
         public string Horario { get; set; }  // 2LM4LM
         public string Numero { get; set; } // 128
     }
