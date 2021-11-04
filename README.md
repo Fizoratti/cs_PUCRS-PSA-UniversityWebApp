@@ -10,7 +10,7 @@ Required software:
 
 3. [SQL Server Express](https://go.microsoft.com/fwlink/?LinkID=866658)
 
-Dependencies: NuGet, Entity Framework, 
+Dependencies: NuGet, [Entity Framework](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/6.0.0-rc.2.21480.5),
 
 ## Visual Studio Code
 
@@ -33,6 +33,7 @@ Recommended extensions:
 - [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 ---
+
 #### Instruções para executar o App no VSCode
 
 Os comandos abaixo devem ser executados no PowerShell do Windows.
@@ -42,33 +43,43 @@ Os comandos abaixo devem ser executados no PowerShell do Windows.
 ```Powershell
     cd .\persistencia
 ```
+
 ###### Current path should be '~\UniversityWebApp\Persistencia
 
 Verifica as dependencias do projeto
+
 ```Powershell
     dotnet restore
 ```
 
 ##### Recompilar o projeto
-Neste momento sabemos se existe algum erro de compilação no código do projeto Persistencia (backend). 
+
+Neste momento sabemos se existe algum erro de compilação no código do projeto Persistencia (backend).
+
 ```Powershell
     dotnet build
 ```
 
 ##### Drop database
+
 Este comando só é necessário caso já exista um banco de dados.
+
 ```Powershell
     dotnet ef database drop -f --no-build --startup-project .\Persistencia.csproj
 ```
 
 ##### Add new migration
+
 Você pode excluir a pasta 'Migrations' em '~\UniversityWebApp\Persistencia' antes de rodar o comando abaixo. **Alterar `<nomeDaMigration>` para o nome de um peixe, por exemplo `PeixeEspada`.**
+
 ```Powershell
     dotnet ef migrations add <nomeDaMigration> --no-build --startup-project .\Persistencia.csproj
 ```
 
 ##### Update database
+
 Não sei quando se faz necessário usar este comando.
+
 ```Powershell
     dotnet ef database update --no-build --startup-project .\Persistencia.csproj
 ```
@@ -76,6 +87,7 @@ Não sei quando se faz necessário usar este comando.
 ```Powershell
     cd ..
 ```
+
 ###### Current path should be '~\UniversityWebApp
 
 ### Frontend
@@ -83,25 +95,35 @@ Não sei quando se faz necessário usar este comando.
 ```Powershell
     cd .\UniversityWebApp
 ```
+
 ###### Current path should be '~\UniversityWebApp\UniversityWebApp
 
 Verifica as dependencias do projeto
+
 ```Powershell
     dotnet restore
 ```
 
 ##### Recompilar o projeto
-Neste momento sabemos se existe algum erro de compilação no código do projeto UniversityWebApp (frontend). 
+
+Neste momento sabemos se existe algum erro de compilação no código do projeto UniversityWebApp (frontend).
+
 ```Powershell
     dotnet build
 ```
+
 ##### Confie no certificado de desenvolvimento HTTPS
+
 Só precisa ser executado uma vez no computador.
+
 ```Powershell
     dotnet dev-certs https --trust
 ```
+
 ##### Rodar a aplicação
+
 Este mesmo comando vai executar o backend **e** o frontend.
+
 ```Powershell
     dotnet watch run
 ```
@@ -111,11 +133,13 @@ O navegador deve ser aberto na URL https://localhost:5001/ (talvez seja necessá
 Registrar um novo usuário (`user@email.com`, `123456`).
 
 Executar script SQL que adiciona uma matricula ao novo usuário criado.
+
 ```sql
 update AspNetUsers set Matricula=15111090, Nome='User' where ApplicationUserID=0;
 ```
 
 Executar script SQL que adiciona dados de histórico ao novo usuário.
+
 ```sql
 insert into Historico (Nota, Semestre, Matricula) values (7.0, '2021-1', 15111090);
 insert into Historico (Nota, Semestre, Matricula) values (7.0, '2020-2', 15111090);
@@ -124,6 +148,7 @@ insert into Historico (Nota, Semestre, Matricula) values (7.0, '2021-1', 1511109
 ```
 
 ---
+
 #### Instruções para executar o App no Visual Studio
 
 ## Visual Studio
@@ -136,7 +161,7 @@ insert into Historico (Nota, Semestre, Matricula) values (7.0, '2021-1', 1511109
 
 - Abrir o Console do Gerenciador de Pacotes NuGet
 
-- Selecionar 'Persistencia' no Projeto padrão 
+- Selecionar 'Persistencia' no Projeto padrão
 
 - Add-Migration PeixeEspada -context SchoolContext
 
@@ -149,20 +174,3 @@ insert into Historico (Nota, Semestre, Matricula) values (7.0, '2021-1', 1511109
 - Executar script SQL que adiciona matriculas
 
 - Executar script SQL que adiciona uma matrícula ao usuário logado/registrado/autenticado
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
