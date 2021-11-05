@@ -30,7 +30,11 @@ UniversityWebApp é um projeto baseado no App _ContosoUniverity_ criado neste [t
 
 ### Software
 
-1. [**Visual Studio Code**](https://code.visualstudio.com/download)
+1. [**.NET 5.0 SDK**](https://dotnet.microsoft.com/download/dotnet/5.0)
+
+2. [**SQL Server Express**](https://go.microsoft.com/fwlink/?LinkID=866658)
+
+3. [**Visual Studio Code**](https://code.visualstudio.com/download)
 
 Required Extensions:
 
@@ -47,10 +51,6 @@ Recommended extensions:
 - [ ] [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
 
 - [ ] [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-2. [**.NET 5.0 SDK**](https://dotnet.microsoft.com/download/dotnet/5.0)
-
-3. [**SQL Server Express**](https://go.microsoft.com/fwlink/?LinkID=866658)
 
 ---
 
@@ -104,8 +104,6 @@ Entity Framework 5 minutos installation tutorial at [this link](https://docs.mic
 ```Powershell
     dotnet build
 ```
-
-###### Current path should be '~\UniversityWebApp
 
 ## 2) Persistencia
 
@@ -175,7 +173,7 @@ Este comando só é necessário caso já exista um banco de dados.
 
 ###### Current path should be '~\UniversityWebApp
 
-## 3) UniversityWebApp <a name="UniversityWebApp"></a>
+## 3) UniversityWebApp
 
 ```Powershell
     cd .\UniversityWebApp # Current path should be '~\UniversityWebApp\UniversityWebApp
@@ -231,7 +229,9 @@ Registrar um novo usuário (exemplo: `user@email.com`, `123456`).
     hostname
 ```
 
-**String de conexão:** é composta pelo nome da máquina seguido pelo nome do banco. Se encontra no arquivo `appsettings.json` no projeto Persistencia.
+**Instancia do banco:** one instance can contain multiple databases.
+
+**String de conexão:** é composta pelo nome da máquina seguido pelo nome da instância do banco. Se encontra no arquivo `appsettings.json` no projeto Persistencia.
 
 Exemplo:
 
@@ -257,10 +257,21 @@ update AspNetUsers set Matricula=15111090, Nome='User' where ApplicationUserID=0
 ##### Executar script SQL que adiciona dados de histórico ao novo usuário.
 
 ```sql
-insert into Historico (Nota, Semestre, Matricula) values (7.0, '2021-1', 15111090);
-insert into Historico (Nota, Semestre, Matricula) values (7.0, '2020-2', 15111090);
-insert into Historico (Nota, Semestre, Matricula) values (7.0, '2020-1', 15111090);
-insert into Historico (Nota, Semestre, Matricula) values (7.0, '2021-1', 15111091);
+insert into Historico (Nota, Semestre, Codcred, nomeDisciplina, Matricula)
+    values (7.0, '2021-1', '4653B-04', 'Programação de Software Aplicado', 15111090);
+insert into Historico (Nota, Semestre, Codcred, nomeDisciplina, Matricula)
+    values (7.0, '2020-2', '4351B-04', 'Fundamentos de Programação', 15111090);
+insert into Historico (Nota, Semestre, Codcred, nomeDisciplina, Matricula)
+    values (7.0, '2020-1', '4636D-04', 'Sistemas Operacionais', 15111090);
+insert into Historico (Nota, Semestre, Codcred, nomeDisciplina, Matricula)
+    values (7.0, '2021-1', '4650A-02', 'Fundamentos de Banco de Dados', 15111091);
+```
+
+##### Executar script SQL que adiciona turmas.
+
+```sql
+insert into Historico (Codcred, Horario, Numero)
+    values ('4653B-04', '2LM4LM', '168',);
 ```
 
 ### Instalando o SQL Express 2019
@@ -338,9 +349,9 @@ insert into Historico (Nota, Semestre, Matricula) values (7.0, '2021-1', 1511109
 
 ---
 
-#### Instruções para executar o App no Visual Studio
+Instruções para executar o App no Visual Studio
 
-## Visual Studio
+# Visual Studio
 
 - Menu Compilação>Recompilar Solução
 
