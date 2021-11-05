@@ -46,11 +46,11 @@ Required Extensions:
 
 Recommended extensions:
 
-- [ ] [C# Extensions](https://marketplace.visualstudio.com/items?itemName=jchannon.csharpextensions)
-
 - [ ] [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
 
 - [ ] [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+- [ ] [C# Extensions](https://marketplace.visualstudio.com/items?itemName=jchannon.csharpextensions)
 
 ---
 
@@ -72,7 +72,7 @@ Entity Framework 5 minutos installation tutorial at [this link](https://docs.mic
 
 ```Powershell
     dotnet tool install --global dotnet-ef
-    dotnet tool update --global dotnet-ef
+    # dotnet tool update --global dotnet-ef
 ```
 
 # Backend
@@ -143,7 +143,7 @@ Entity Framework 5 minutos installation tutorial at [this link](https://docs.mic
     dotnet build
 ```
 
-#### Migrations
+### Migrations
 
 ##### Add new migration
 
@@ -270,7 +270,7 @@ insert into Historico (Nota, Semestre, Codcred, nomeDisciplina, Matricula)
 ##### Executar script SQL que adiciona turmas.
 
 ```sql
-insert into Historico (Codcred, Horario, Numero)
+insert into Turma (Codcred, Horario, Numero)
     values ('4653B-04', '2LM4LM', '168',);
 ```
 
