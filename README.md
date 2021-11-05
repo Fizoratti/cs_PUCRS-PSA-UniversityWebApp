@@ -1,36 +1,56 @@
+<h3 align="center">
+  <img src="https://img.shields.io/badge/platform-windows-blue" />
+  <img src="https://img.shields.io/badge/.NET-5.0.303-blue" />
+  <a href="https://gitpod.io/#https://github.com/Fizoratti/cs_PUCRS-PSA-UniversityWebApp">
+    <img src="https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod" />
+  </a>
+  <p></p>
+  <p align="center">PUCRS - Escola Politécnica - 2021/1</p>
+  <p align="center">Disciplina: Programação de Software Aplicado</p>
+  <p align="center">Prof. Alexandre Agustini</p>
+</h3>
+
 # Getting Started
 
 UniversityWebApp é um projeto baseado no App _ContosoUniverity_ criado neste [tutorial da Microsoft](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-5.0). Existem outras dependências como **NuGet** e **Entity Framework** que precisam estar instaladas no computador pra executar este App. Porém, este tutorial não possui instruções de como instalá-las. Você encontrará essas intruções no tutorial da Microsoft citado acima.
 
-Required software:
+# Table of Contents
 
-1. [Visual Studio Code]()
+1. [Pré Requisitos](#pré-requisitos)
+2. [Backend](#backend)
+   - [Entidades](#)
+   - [Persistencia](#)
+3. [Frontend](#frontend)
+   - [UniversityWebApp](#)
+4. [Database](#database)
+   - [UniversityDB](#)
+     - [Instalando o SQL Express](#)
 
-2. [.NET 5.0 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
+# Pré Requisitos
 
-3. [SQL Server Express](https://go.microsoft.com/fwlink/?LinkID=866658)
+### Software
 
-Dependencies: NuGet, [Entity Framework](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/6.0.0-rc.2.21480.5),
-
-## Visual Studio Code
-
-#### VSCode Extensions
+1. [**Visual Studio Code**](https://code.visualstudio.com/download)
 
 Required Extensions:
 
-1. [vscode-solution-explorer](https://marketplace.visualstudio.com/items?itemName=fernandoescolar.vscode-solution-explorer)
+- [x] [vscode-solution-explorer](https://marketplace.visualstudio.com/items?itemName=fernandoescolar.vscode-solution-explorer)
 
-2. [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+- [x] [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 
-3. [SQL Server (mssql)](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql)
+- [x] [SQL Server (mssql)](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql)
 
 Recommended extensions:
 
-- [C# Extensions](https://marketplace.visualstudio.com/items?itemName=jchannon.csharpextensions)
+- [ ] [C# Extensions](https://marketplace.visualstudio.com/items?itemName=jchannon.csharpextensions)
 
-- [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
+- [ ] [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
 
-- [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [ ] [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+2. [**.NET 5.0 SDK**](https://dotnet.microsoft.com/download/dotnet/5.0)
+
+3. [**SQL Server Express**](https://go.microsoft.com/fwlink/?LinkID=866658)
 
 ---
 
@@ -38,26 +58,109 @@ Recommended extensions:
 
 Os comandos abaixo devem ser executados no PowerShell do Windows.
 
-### Backend
+### Dependencies
+
+#### NuGet
 
 ```Powershell
-    cd .\persistencia
+    ? # Acho que já vem instalado junto quando instala o SDK do .NET
 ```
 
-###### Current path should be '~\UniversityWebApp\Persistencia
+#### Entity Framework
 
-Verifica as dependencias do projeto
+Entity Framework 5 minutos installation tutorial at [this link](https://docs.microsoft.com/pt-br/ef/core/get-started/overview/install). Entity Framework 4 minutes tutorial at [this link](https://docs.microsoft.com/pt-br/ef/core/).
+
+```Powershell
+    dotnet tool install --global dotnet-ef
+    dotnet tool update --global dotnet-ef
+```
+
+# Backend
+
+###### Current path should be '~\UniversityWebApp
+
+## 1) Entidades
+
+```Powershell
+    cd .\Entidades # Current path should be '~\UniversityWebApp\Entidades
+```
+
+**Instalar dependencias:**
+
+##### [Microsoft.AspNetCore.Identity.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.EntityFrameworkCore/)
+
+```Powershell
+    dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore --version 5.0.11
+```
+
+**Verificar dependencias:** verifica se todas as dependencias do projeto foram instaladas:
 
 ```Powershell
     dotnet restore
 ```
 
-##### Recompilar o projeto
-
-Neste momento sabemos se existe algum erro de compilação no código do projeto Persistencia (backend).
+**Recompilar o projeto:** neste momento sabemos se existe algum erro de compilação no código do projeto Entidades.
 
 ```Powershell
     dotnet build
+```
+
+###### Current path should be '~\UniversityWebApp
+
+## 2) Persistencia
+
+```Powershell
+    cd .\Persistencia # Current path should be '~\UniversityWebApp\Persistencia
+```
+
+**Instalar dependencias:**
+
+##### [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)
+
+```Powershell
+    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.11
+```
+
+##### [Microsoft.EntityFrameworkCore.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design)
+
+```Powershell
+    dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.11
+```
+
+##### []()
+
+```Powershell
+    # Precisamos confirmar quais são as dependencias necessárias pra este projeto além das acima
+```
+
+**Verificar dependencias:** verifica se todas as dependencias do projeto foram instaladas:
+
+```Powershell
+    dotnet restore
+```
+
+**Recompilar o projeto:** neste momento sabemos se existe algum erro de compilação no código do projeto Persistencia (backend).
+
+```Powershell
+    dotnet build
+```
+
+#### Migrations
+
+##### Add new migration
+
+Você pode excluir a pasta `Persistencia\Migrations` antes de rodar o comando abaixo. **`PeixeEspada` é um nome para a migration. Este nome só pode ser usado uma vez. Quando for executar uma nova migration (executar o comando mais de uma vez) escolha outro nome de peixe.**
+
+```Powershell
+    dotnet ef migrations add PeixeEspada --no-build --startup-project .\Persistencia.csproj
+```
+
+##### Update database
+
+Usamos este comando quando os arquivos em `Entidades\Models` forem alterados. Para que a alteração nesses arquivos tenham efeito, é necessário realizar uma nova migration (para atualizar os arquivos no projeto Persistência)
+
+```Powershell
+    dotnet ef database update --no-build --startup-project .\Persistencia.csproj
 ```
 
 ##### Drop database
@@ -68,61 +171,49 @@ Este comando só é necessário caso já exista um banco de dados.
     dotnet ef database drop -f --no-build --startup-project .\Persistencia.csproj
 ```
 
-##### Add new migration
-
-Você pode excluir a pasta 'Migrations' em '~\UniversityWebApp\Persistencia' antes de rodar o comando abaixo. **Alterar `<nomeDaMigration>` para o nome de um peixe, por exemplo `PeixeEspada`.**
-
-```Powershell
-    dotnet ef migrations add <nomeDaMigration> --no-build --startup-project .\Persistencia.csproj
-```
-
-##### Update database
-
-Não sei quando se faz necessário usar este comando.
-
-```Powershell
-    dotnet ef database update --no-build --startup-project .\Persistencia.csproj
-```
-
-```Powershell
-    cd ..
-```
+# Frontend
 
 ###### Current path should be '~\UniversityWebApp
 
-### Frontend
+## 3) UniversityWebApp <a name="UniversityWebApp"></a>
 
 ```Powershell
-    cd .\UniversityWebApp
+    cd .\UniversityWebApp # Current path should be '~\UniversityWebApp\UniversityWebApp
 ```
 
-###### Current path should be '~\UniversityWebApp\UniversityWebApp
+**Instalar dependencias:**
 
-Verifica as dependencias do projeto
+##### [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/)
+
+```Powershell
+    dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 5.0.2
+```
+
+##### []()
+
+```Powershell
+    # Precisamos confirmar quais são as dependencias necessárias pra este projeto além das acima
+```
+
+**Verificar dependencias:** verifica se todas as dependencias do projeto foram instaladas:
 
 ```Powershell
     dotnet restore
 ```
 
-##### Recompilar o projeto
-
-Neste momento sabemos se existe algum erro de compilação no código do projeto UniversityWebApp (frontend).
+**Recompilar o projeto:** neste momento sabemos se existe algum erro de compilação no código do projeto UniversityWebApp (frontend).
 
 ```Powershell
     dotnet build
 ```
 
-##### Confie no certificado de desenvolvimento HTTPS
-
-Só precisa ser executado uma vez no computador.
+**Confie no certificado de desenvolvimento HTTPS:** Só precisa ser executado uma vez no computador.
 
 ```Powershell
     dotnet dev-certs https --trust
 ```
 
-##### Rodar a aplicação
-
-Este mesmo comando vai executar o backend **e** o frontend.
+**Rodar a aplicação:** este mesmo comando vai executar o backend **e** o frontend.
 
 ```Powershell
     dotnet watch run
@@ -130,21 +221,119 @@ Este mesmo comando vai executar o backend **e** o frontend.
 
 O navegador deve ser aberto na URL https://localhost:5001/ (talvez seja necessário abrir em https://localhost:5001/Home/index/).
 
-Registrar um novo usuário (`user@email.com`, `123456`).
+Registrar um novo usuário (exemplo: `user@email.com`, `123456`).
 
-Executar script SQL que adiciona uma matricula ao novo usuário criado.
+# Database
+
+**Nome da máquina:** é possivel descobrir o `hostname` (nome da máquina) usando o comando abaixo:
+
+```Powershell
+    hostname
+```
+
+**String de conexão:** é composta pelo nome da máquina seguido pelo nome do banco. Se encontra no arquivo `appsettings.json` no projeto Persistencia.
+
+Exemplo:
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=W10781D0B3\\SQLEXPRESS;Database=UniversityDB;Trusted_Connection=True;MultipleActiveResultSets=true",
+    ...
+}
+
+```
+
+Nesse exemplo, hostname é _W10781D0B3_ e a instancia do banco é _SQLEXPRESS_.
+
+## 4. UniversityDB
+
+##### Executar script SQL que adiciona uma matricula ao novo usuário criado.
 
 ```sql
 update AspNetUsers set Matricula=15111090, Nome='User' where ApplicationUserID=0;
 ```
 
-Executar script SQL que adiciona dados de histórico ao novo usuário.
+##### Executar script SQL que adiciona dados de histórico ao novo usuário.
 
 ```sql
 insert into Historico (Nota, Semestre, Matricula) values (7.0, '2021-1', 15111090);
 insert into Historico (Nota, Semestre, Matricula) values (7.0, '2020-2', 15111090);
 insert into Historico (Nota, Semestre, Matricula) values (7.0, '2020-1', 15111090);
 insert into Historico (Nota, Semestre, Matricula) values (7.0, '2021-1', 15111091);
+```
+
+### Instalando o SQL Express 2019
+
+É importante possuir o SQL Express para a string de conexão funcionar. Também será necessário alterar a string para ela conter o “hostname”.
+
+1. Baixe a versão **developer** e instale o **BASIC**. Se você já tem instalado pesquise no Windows por _“SQL Server 2019 Installation Center”_.
+   Obs.: não é o SQL Server Management.
+
+2. Abra o programa e vá na aba “Installation”, depois na opção “New SQL Server stand-alone...”
+
+3. Caso peça um nome, coloque SQLEXPRESS.
+
+4. Na janela que abriu, procure onde está instalado seu SQL2019 e clique em “OK”, conforme imagem abaixo:
+
+![sqlexpressinstallimg1](https://gcdn.pbrd.co/images/9EXuDyQ4lCLX.png?o=1)
+
+5. Siga as instruções clicando em “Next” até a opção “Feature Selection”. Aqui é um ponto importante. As opções “Database Engine Services” e “Full-Text and Semantic Extractions for Search” devem estar marcadas. Depois prossiga com a instalação, conforme imagem abaixo:
+
+![sqlexpressinstallimg2](https://gcdn.pbrd.co/images/kblViCjsY3VS.png?o=1)
+
+## NuGet Packages
+
+##### [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore)
+
+```Powershell
+    dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --version 5.0.11
+```
+
+##### [Microsoft.AspNetCore.Identity.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.EntityFrameworkCore/)
+
+```Powershell
+    dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore --version 5.0.11
+```
+
+##### [Microsoft.AspNetCore.Identity.UI ](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.UI/)
+
+```Powershell
+    dotnet add package Microsoft.AspNetCore.Identity.UI --version 5.0.11
+```
+
+##### [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)
+
+```Powershell
+    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.11
+```
+
+##### [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools/)
+
+```Powershell
+    dotnet add package Microsoft.EntityFrameworkCore.Tools --version 5.0.11
+```
+
+##### [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/)
+
+```Powershell
+    dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 5.0.2
+```
+
+.csproj referência
+
+```xml
+<ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+</ItemGroup>
 ```
 
 ---

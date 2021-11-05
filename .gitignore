@@ -1,13 +1,31 @@
-# Created by https://www.toptal.com/developers/gitignore/api/dotnetcore
-# Edit at https://www.toptal.com/developers/gitignore?templates=dotnetcore
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+nupkg/
 
-### DotnetCore ###
-# .NET Core build folders
-bin/
-obj/
+# Visual Studio Code
+.vscode
 
-# Common node modules locations
-/node_modules
-/wwwroot/node_modules
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-# End of https://www.toptal.com/developers/gitignore/api/dotnetcore
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
