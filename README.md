@@ -30,11 +30,13 @@ UniversityWebApp é um projeto baseado no App _ContosoUniverity_ criado neste [t
 
 ### Software
 
-1. [**.NET 5.0 SDK**](https://dotnet.microsoft.com/download/dotnet/5.0)
+1. [**Git**](https://git-scm.com/downloads)
 
 2. [**SQL Server Express**](https://go.microsoft.com/fwlink/?LinkID=866658)
 
-3. [**Visual Studio Code**](https://code.visualstudio.com/download)
+3. [**.NET 5.0 SDK**](https://dotnet.microsoft.com/download/dotnet/5.0)
+
+4. [**Visual Studio Code**](https://code.visualstudio.com/download)
 
 Required Extensions:
 
@@ -58,31 +60,39 @@ Recommended extensions:
 
 Os comandos abaixo devem ser executados no PowerShell do Windows.
 
+### Clone
+
+```powershell
+    git clone https://github.com/Fizoratti/cs_PUCRS-PSA-UniversityWebApp.git
+    cd .\cs_PUCRS-PSA-UniversityWebApp # Current path should be ~\cs_PUCRS-PSA-UniversityWebApp
+    code .
+```
+
 ### Dependencies
 
 #### NuGet
 
 ```Powershell
-    ? # Acho que já vem instalado junto quando instala o SDK do .NET
+    # Vem instalado junto quando instala o SDK do .NET
 ```
 
 #### Entity Framework
 
-Entity Framework 5 minutos installation tutorial at [this link](https://docs.microsoft.com/pt-br/ef/core/get-started/overview/install). Entity Framework 4 minutes tutorial at [this link](https://docs.microsoft.com/pt-br/ef/core/).
+How to Install Entity Framework tutorial in 5 minutes at [this link](https://docs.microsoft.com/pt-br/ef/core/get-started/overview/install). Entity Framework overview tutorial in 5 minutes at [this link](https://docs.microsoft.com/pt-br/ef/core/).
 
 ```Powershell
     dotnet tool install --global dotnet-ef
-    # dotnet tool update --global dotnet-ef
+    # dotnet tool update --global dotnet-ef  (Caso já tenha dotnet-ef instalado e queira atualizar a versão)
 ```
 
 # Backend
 
-###### Current path should be '~\UniversityWebApp
+###### Current path should be ~\cs_PUCRS-PSA-UniversityWebApp
 
 ## 1) Entidades
 
 ```Powershell
-    cd .\Entidades # Current path should be '~\UniversityWebApp\Entidades
+    cd .\Entidades # Current path should be ~\cs_PUCRS-PSA-UniversityWebApp\Entidades
 ```
 
 **Instalar dependencias:**
@@ -108,7 +118,7 @@ Entity Framework 5 minutos installation tutorial at [this link](https://docs.mic
 ## 2) Persistencia
 
 ```Powershell
-    cd .\Persistencia # Current path should be '~\UniversityWebApp\Persistencia
+    cd .\Persistencia # Current path should be ~\cs_PUCRS-PSA-UniversityWebApp\Persistencia
 ```
 
 **Instalar dependencias:**
@@ -171,12 +181,12 @@ Este comando só é necessário caso já exista um banco de dados.
 
 # Frontend
 
-###### Current path should be '~\UniversityWebApp
+###### Current path should be ~\cs_PUCRS-PSA-UniversityWebApp
 
 ## 3) UniversityWebApp
 
 ```Powershell
-    cd .\UniversityWebApp # Current path should be '~\UniversityWebApp\UniversityWebApp
+    cd .\UniversityWebApp # Current path should be ~\cs_PUCRS-PSA-UniversityWebApp\UniversityWebApp
 ```
 
 **Instalar dependencias:**
@@ -246,6 +256,25 @@ Exemplo:
 
 Nesse exemplo, hostname é _W10781D0B3_ e a instancia do banco é _SQLEXPRESS_.
 
+### Instalando o SQL Express 2019
+
+É importante possuir o SQL Express para a string de conexão funcionar. Também será necessário alterar a string para ela conter o “hostname”.
+
+1. Baixe a versão **developer** e instale o **BASIC**. Se você já tem instalado pesquise no Windows por _“SQL Server 2019 Installation Center”_.
+   Obs.: não é o SQL Server Management.
+
+2. Abra o programa e vá na aba “Installation”, depois na opção “New SQL Server stand-alone...”
+
+3. Caso peça um nome, coloque SQLEXPRESS.
+
+4. Na janela que abriu, procure onde está instalado seu SQL2019 e clique em “OK”, conforme imagem abaixo:
+
+![sqlexpressinstallimg1](https://gcdn.pbrd.co/images/9EXuDyQ4lCLX.png?o=1)
+
+5. Siga as instruções clicando em “Next” até a opção “Feature Selection”. Aqui é um ponto importante. As opções “Database Engine Services” e “Full-Text and Semantic Extractions for Search” devem estar marcadas. Depois prossiga com a instalação, conforme imagem abaixo:
+
+![sqlexpressinstallimg2](https://gcdn.pbrd.co/images/kblViCjsY3VS.png?o=1)
+
 ## 4. UniversityDB
 
 ##### Executar script SQL que adiciona uma matricula ao novo usuário criado.
@@ -273,25 +302,6 @@ insert into Historico (Nota, Semestre, Codcred, nomeDisciplina, Matricula)
 insert into Turma (Codcred, Horario, Numero)
     values ('4653B-04', '2LM4LM', '168',);
 ```
-
-### Instalando o SQL Express 2019
-
-É importante possuir o SQL Express para a string de conexão funcionar. Também será necessário alterar a string para ela conter o “hostname”.
-
-1. Baixe a versão **developer** e instale o **BASIC**. Se você já tem instalado pesquise no Windows por _“SQL Server 2019 Installation Center”_.
-   Obs.: não é o SQL Server Management.
-
-2. Abra o programa e vá na aba “Installation”, depois na opção “New SQL Server stand-alone...”
-
-3. Caso peça um nome, coloque SQLEXPRESS.
-
-4. Na janela que abriu, procure onde está instalado seu SQL2019 e clique em “OK”, conforme imagem abaixo:
-
-![sqlexpressinstallimg1](https://gcdn.pbrd.co/images/9EXuDyQ4lCLX.png?o=1)
-
-5. Siga as instruções clicando em “Next” até a opção “Feature Selection”. Aqui é um ponto importante. As opções “Database Engine Services” e “Full-Text and Semantic Extractions for Search” devem estar marcadas. Depois prossiga com a instalação, conforme imagem abaixo:
-
-![sqlexpressinstallimg2](https://gcdn.pbrd.co/images/kblViCjsY3VS.png?o=1)
 
 ## NuGet Packages
 
@@ -374,3 +384,4 @@ Instruções para executar o App no Visual Studio
 - Executar script SQL que adiciona matriculas
 
 - Executar script SQL que adiciona uma matrícula ao usuário logado/registrado/autenticado
+
