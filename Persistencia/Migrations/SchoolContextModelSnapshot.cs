@@ -16,7 +16,7 @@ namespace Persistencia.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.10")
+                .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Entidades.Models.ApplicationUser", b =>
@@ -124,11 +124,11 @@ namespace Persistencia.Migrations
                     b.Property<string>("Codcred")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Matricula")
+                    b.Property<int>("DisciplinaID")
                         .HasColumnType("int");
 
-                    b.Property<string>("NomeDisciplina")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Matricula")
+                        .HasColumnType("int");
 
                     b.Property<double>("Nota")
                         .HasColumnType("float");
@@ -139,6 +139,8 @@ namespace Persistencia.Migrations
                     b.HasKey("ItemHistoricoID");
 
                     b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("DisciplinaID");
 
                     b.ToTable("Historico");
                 });
@@ -325,6 +327,14 @@ namespace Persistencia.Migrations
                     b.HasOne("Entidades.Models.ApplicationUser", null)
                         .WithMany("Historico")
                         .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Entidades.Models.Disciplina", "Disciplina")
+                        .WithMany()
+                        .HasForeignKey("DisciplinaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Disciplina");
                 });
 
             modelBuilder.Entity("Entidades.Models.Matricula", b =>

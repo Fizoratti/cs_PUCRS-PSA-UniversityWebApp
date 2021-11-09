@@ -38,9 +38,9 @@ namespace Persistencia.Repositorio
 
             var disciplinas = new Disciplina[]
             {
-            new Disciplina{DisciplinaID=1050, Codcred="4637B-04", Nome="Programação de Software Aplicado"},
-            new Disciplina{DisciplinaID=4022, Codcred="4647D-02", Nome="Microeconomics"},
-            new Disciplina{DisciplinaID=4041, Codcred="4657B-04", Nome="Macroeconomics"},
+            new Disciplina{DisciplinaID=1, Codcred="4637B-04", Nome="Programação de Software Aplicado"},
+            new Disciplina{DisciplinaID=2, Codcred="4647D-02", Nome="Microeconomics"},
+            new Disciplina{DisciplinaID=3, Codcred="4657B-04", Nome="Macroeconomics"},
             new Disciplina{DisciplinaID=1045, Codcred="4667A-02", Nome="Calculus"},
             new Disciplina{DisciplinaID=3141, Codcred="4677R-06", Nome="Trigonometry"},
             new Disciplina{DisciplinaID=2021, Codcred="4687B-04", Nome="Composition"},
@@ -75,7 +75,9 @@ namespace Persistencia.Repositorio
 
             var historico = new ItemHistorico[]
             {
-            new ItemHistorico{ItemHistoricoID=1, Nota=7, Semestre="2021-1", Matricula=15111090}
+            new ItemHistorico{ItemHistoricoID=1, DisciplinaID=1, Nota=7, Semestre="2021-1", Matricula=15111090},
+            new ItemHistorico{ItemHistoricoID=2, DisciplinaID=2, Nota=7, Semestre="2021-1", Matricula=15111090},
+            new ItemHistorico{ItemHistoricoID=3, DisciplinaID=3, Nota=7, Semestre="2021-1", Matricula=15111090}
             };
             foreach (ItemHistorico h in historico)
             {
