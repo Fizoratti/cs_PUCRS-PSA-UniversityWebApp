@@ -385,3 +385,15 @@ Instruções para executar o App no Visual Studio
 
 - Executar script SQL que adiciona uma matrícula ao usuário logado/registrado/autenticado
 
+
+
+
+
+
+dhasudhas
+bank
+```sql
+SET IDENTITY_INSERT [dbo].[Historico] ON
+INSERT INTO [dbo].[Historico] ([ItemHistoricoID], [ApplicationUserId], [DisciplinaID], [AnoSemestre], [Nota]) VALUES (1, '12b0a417-67f2-4eb3-abdc-61c0078e128a', 1, '2020-2', 9)
+SET IDENTITY_INSERT [dbo].[Historico] OFF
+```
