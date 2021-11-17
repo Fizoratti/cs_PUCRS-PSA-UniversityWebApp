@@ -50,8 +50,8 @@ namespace UniversityWebApp
                 options.Password.RequiredUniqueChars = 1;
 
                 // Lockout settings.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(180);
+                options.Lockout.MaxFailedAccessAttempts = 100;
                 options.Lockout.AllowedForNewUsers = true;
 
                 // User settings.

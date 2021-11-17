@@ -9,7 +9,8 @@ namespace Entidades.Models
     public class Matricula
     {
         public int MatriculaID { get; set; }
-        public double? Nota { get; set; }
-        public ApplicationUser Student { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
+        public int TurmaID { get; set; }
+        public virtual Turma Turma { get; set; }
     }
 }

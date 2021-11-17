@@ -16,7 +16,7 @@ namespace Persistencia.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.11")
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Entidades.Models.ApplicationUser", b =>
@@ -25,9 +25,6 @@ namespace Persistencia.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ApplicationUserID")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -118,23 +115,17 @@ namespace Persistencia.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AnoSemestre")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Codcred")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DisciplinaID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Matricula")
-                        .HasColumnType("int");
-
                     b.Property<double>("Nota")
                         .HasColumnType("float");
-
-                    b.Property<string>("Semestre")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ItemHistoricoID");
 
@@ -152,20 +143,17 @@ namespace Persistencia.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DisciplinaID")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("Nota")
-                        .HasColumnType("float");
-
-                    b.Property<string>("StudentId")
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("TurmaID")
+                        .HasColumnType("int");
 
                     b.HasKey("MatriculaID");
 
-                    b.HasIndex("DisciplinaID");
+                    b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex("TurmaID");
 
                     b.ToTable("Matricula");
                 });
@@ -177,8 +165,8 @@ namespace Persistencia.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Codcred")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DisciplinaID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Horario")
                         .HasColumnType("nvarchar(max)");
@@ -186,7 +174,12 @@ namespace Persistencia.Migrations
                     b.Property<string>("Numero")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Vagas")
+                        .HasColumnType("int");
+
                     b.HasKey("TurmaID");
+
+                    b.HasIndex("DisciplinaID");
 
                     b.ToTable("Turma");
                 });
@@ -269,10 +262,12 @@ namespace Persistencia.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -309,10 +304,12 @@ namespace Persistencia.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -324,7 +321,7 @@ namespace Persistencia.Migrations
 
             modelBuilder.Entity("Entidades.Models.ItemHistorico", b =>
                 {
-                    b.HasOne("Entidades.Models.ApplicationUser", null)
+                    b.HasOne("Entidades.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Historico")
                         .HasForeignKey("ApplicationUserId");
 
@@ -334,20 +331,37 @@ namespace Persistencia.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("ApplicationUser");
+
                     b.Navigation("Disciplina");
                 });
 
             modelBuilder.Entity("Entidades.Models.Matricula", b =>
                 {
-                    b.HasOne("Entidades.Models.Disciplina", null)
-                        .WithMany("Matriculas")
-                        .HasForeignKey("DisciplinaID");
-
-                    b.HasOne("Entidades.Models.ApplicationUser", "Student")
+                    b.HasOne("Entidades.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("StudentId");
+                        .HasForeignKey("ApplicationUserId");
 
-                    b.Navigation("Student");
+                    b.HasOne("Entidades.Models.Turma", "Turma")
+                        .WithMany()
+                        .HasForeignKey("TurmaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Turma");
+                });
+
+            modelBuilder.Entity("Entidades.Models.Turma", b =>
+                {
+                    b.HasOne("Entidades.Models.Disciplina", "Disciplina")
+                        .WithMany()
+                        .HasForeignKey("DisciplinaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Disciplina");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -404,11 +418,6 @@ namespace Persistencia.Migrations
             modelBuilder.Entity("Entidades.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Historico");
-                });
-
-            modelBuilder.Entity("Entidades.Models.Disciplina", b =>
-                {
-                    b.Navigation("Matriculas");
                 });
 #pragma warning restore 612, 618
         }

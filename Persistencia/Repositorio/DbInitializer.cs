@@ -75,9 +75,9 @@ namespace Persistencia.Repositorio
 
             var historico = new ItemHistorico[]
             {
-            new ItemHistorico{ItemHistoricoID=1, DisciplinaID=1, Nota=7, Semestre="2021-1", Matricula=15111090},
-            new ItemHistorico{ItemHistoricoID=2, DisciplinaID=2, Nota=7, Semestre="2021-1", Matricula=15111090},
-            new ItemHistorico{ItemHistoricoID=3, DisciplinaID=3, Nota=7, Semestre="2021-1", Matricula=15111090}
+            new ItemHistorico{ItemHistoricoID=1, DisciplinaID=1, Nota=7, AnoSemestre="2021-1"},
+            new ItemHistorico{ItemHistoricoID=2, DisciplinaID=2, Nota=8, AnoSemestre="2021-1"},
+            new ItemHistorico{ItemHistoricoID=3, DisciplinaID=3, Nota=8.5, AnoSemestre="2021-1"}
             };
             foreach (ItemHistorico h in historico)
             {

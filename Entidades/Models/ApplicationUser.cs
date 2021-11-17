@@ -6,9 +6,6 @@ namespace Entidades.Models
 {
     public class ApplicationUser : IdentityUser
     {
-
-        public int ApplicationUserID { get; set; }
-
         [MaxLength(11)]
         [Display(Name = "Matrícula")]
         public string Matricula { get; set; }

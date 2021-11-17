@@ -10,19 +10,21 @@ namespace Persistencia.Repositorio
         {
         }
 
-        public DbSet<Disciplina> Disciplinas { get; set; }
-        public DbSet<Matricula> Matriculas { get; set; }
-        public DbSet<ItemHistorico> Historico { get; set; }
-        public DbSet<Turma> Turma { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<Disciplina> Disciplinas { get; set; }
+        public DbSet<ItemHistorico> Historico { get; set; }
+
+        public DbSet<Turma> Turma { get; set; }
+        public DbSet<Matricula> Matriculas { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ApplicationUser>().ToTable("AspNetUsers").HasKey(t => t.Id);
             modelBuilder.Entity<Disciplina>().ToTable("Disciplina");
-            modelBuilder.Entity<Matricula>().ToTable("Matricula");
             modelBuilder.Entity<ItemHistorico>().ToTable("Historico");
             modelBuilder.Entity<Turma>().ToTable("Turma");
-            modelBuilder.Entity<ApplicationUser>().ToTable("AspNetUsers").HasKey(t => t.Id);
+            modelBuilder.Entity<Matricula>().ToTable("Matricula");
 
             base.OnModelCreating(modelBuilder);
         }
