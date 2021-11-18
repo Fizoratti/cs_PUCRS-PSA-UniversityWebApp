@@ -8,14 +8,16 @@ namespace Entidades.Models
     {
         [MaxLength(11)]
         [Display(Name = "Matrícula")]
+        [PersonalData]
         public string Matricula { get; set; }
 
         [MaxLength(40)]
         [Display(Name = "Nome")]
+        [PersonalData]
         public string Nome { get; set; }
 
-        public ICollection<ItemHistorico> Historico { get; set; }
-        //public ICollection<Matricula> Matriculas { get; set; }
+        public virtual ICollection<ItemHistorico> Historico { get; set; }
+        public virtual ICollection<Matricula> Matriculas { get; set; }
 
 
     }

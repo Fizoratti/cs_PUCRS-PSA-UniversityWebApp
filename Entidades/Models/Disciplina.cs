@@ -10,6 +10,6 @@ namespace Entidades.Models
         public string Codcred { get; set; }
         public string Nome { get; set; }
 
-        //public ICollection<Disciplina> Requerimentos { get; set; }
+        public virtual ICollection<Disciplina> Requerimentos { get; set; }
     }
 }
