@@ -17,7 +17,8 @@
                 @Html.DisplayNameFor(model => model.Disciplina)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AnoSemestre)
+                @* @Html.DisplayNameFor(model => model.AnoSemestre)*@
+                Semestre
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nota)
@@ -29,7 +30,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Disciplina.DisciplinaID)
+                @Html.DisplayFor(modelItem => item.Disciplina.Nome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AnoSemestre)

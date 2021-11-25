@@ -22,8 +22,23 @@ namespace UniversityWebApp.Controllers
         // GET: Historico
         public async Task<IActionResult> Index()
         {
-            var schoolContext = _context.Historico.Include(i => i.Disciplina);
-            return View(await schoolContext.ToListAsync());
+            var res = NotFound();
+
+            List<ItemHistorico> historico = null;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                ApplicationUser user = _context.ApplicationUser.FirstOrDefault();
+                historico = await _context.Historico
+                                .Where(e => e.ApplicationUser.Matricula == user.Matricula).ToListAsync();
+            }
+
+            if (historico != null)
+            {
+                return View(historico);
+            }
+
+            return res;
         }
 
         // GET: Historico/Details/5
