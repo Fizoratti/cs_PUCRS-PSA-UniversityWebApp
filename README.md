@@ -385,14 +385,10 @@ Instruções para executar o App no Visual Studio
 
 - Executar script SQL que adiciona uma matrícula ao usuário logado/registrado/autenticado
 
-
-
-
-
-
 # Database
 
 ## Historico Insert
+
 ```sql
 SET IDENTITY_INSERT [dbo].[Historico] ON
 INSERT INTO [dbo].[Historico] ([ItemHistoricoID], [ApplicationUserId], [DisciplinaID], [AnoSemestre], [Nota]) VALUES (1, '12b0a417-67f2-4eb3-abdc-61c0078e128a', 1, '2020-2', 9)
@@ -400,8 +396,15 @@ SET IDENTITY_INSERT [dbo].[Historico] OFF
 ```
 
 ## Turma Insert
+
 ```sql
 SET IDENTITY_INSERT [dbo].[Turma] ON
 INSERT INTO [dbo].[Turma] ([TurmaID], [DisciplinaID], [Horario], [Numero], [Vagas]) VALUES (1, 1, '2LM4LM', '168', 30)
 SET IDENTITY_INSERT [dbo].[Turma] OFF
+```
+
+## Matricula Insert
+
+```sql
+INSERT INTO [dbo].Matricula ([ApplicationUserId], [TurmaId]) VALUES ('12b0a417-67f2-4eb3-abdc-61c0078e128a', 1)
 ```

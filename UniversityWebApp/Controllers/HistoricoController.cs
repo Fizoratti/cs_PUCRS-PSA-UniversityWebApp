@@ -153,7 +153,7 @@ namespace UniversityWebApp.Controllers
                 return NotFound();
             }
 
-            return View(itemHistorico);
+            return View(itemHistorico); 
         }
 
         // POST: Historico/Delete/5
