@@ -390,21 +390,20 @@ Instruções para executar o App no Visual Studio
 ## Historico Insert
 
 ```sql
-SET IDENTITY_INSERT [dbo].[Historico] ON
-INSERT INTO [dbo].[Historico] ([ItemHistoricoID], [ApplicationUserId], [DisciplinaID], [AnoSemestre], [Nota]) VALUES (1, '12b0a417-67f2-4eb3-abdc-61c0078e128a', 1, '2020-2', 9)
-SET IDENTITY_INSERT [dbo].[Historico] OFF
+INSERT INTO [dbo].[Historico] ([ApplicationUserId], [DisciplinaID], [AnoSemestre], [Nota]) VALUES ('12b0a417-67f2-4eb3-abdc-61c0078e128a', 1, '2020-2', 9)
+INSERT INTO [dbo].[Historico] ([ApplicationUserId], [DisciplinaID], [AnoSemestre], [Nota]) VALUES ('12b0a417-67f2-4eb3-abdc-61c0078e128a', 3, '2020-2', 8)
 ```
 
 ## Turma Insert
 
 ```sql
-SET IDENTITY_INSERT [dbo].[Turma] ON
-INSERT INTO [dbo].[Turma] ([TurmaID], [DisciplinaID], [Horario], [Numero], [Vagas]) VALUES (1, 1, '2LM4LM', '168', 30)
-SET IDENTITY_INSERT [dbo].[Turma] OFF
+INSERT INTO [dbo].[Turma] ([DisciplinaID], [Horario], [Numero], [Vagas]) VALUES (1, '2LM4LM', '168', 30)
+INSERT INTO [dbo].[Turma] ([DisciplinaID], [Horario], [Numero], [Vagas]) VALUES (3, '2NP4NP', '127', 5)
 ```
 
 ## Matricula Insert
 
 ```sql
-INSERT INTO [dbo].Matricula ([ApplicationUserId], [TurmaId]) VALUES ('12b0a417-67f2-4eb3-abdc-61c0078e128a', 1)
+INSERT INTO [dbo].[Matricula] ([ApplicationUserId], [TurmaId]) VALUES ('12b0a417-67f2-4eb3-abdc-61c0078e128a', 1)
+INSERT INTO [dbo].[Matricula] ([ApplicationUserId], [TurmaID]) VALUES ('12b0a417-67f2-4eb3-abdc-61c0078e128a', 2)
 ```

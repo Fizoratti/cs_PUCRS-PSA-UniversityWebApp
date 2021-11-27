@@ -22,8 +22,23 @@ namespace UniversityWebApp.Controllers
         // GET: Matriculas
         public async Task<IActionResult> Index()
         {
-            var schoolContext = _context.Matriculas.Include(m => m.Turma);
-            return View(await schoolContext.ToListAsync());
+            var res = NotFound();
+
+            List<Matricula> matriculas = null;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                ApplicationUser user = _context.ApplicationUser.FirstOrDefault();
+                matriculas = await _context.Matriculas.Include(m => m.Turma)
+                                .Where(e => e.ApplicationUser.Matricula == user.Matricula).ToListAsync();
+            }
+
+            if (matriculas != null)
+            {
+                return View(matriculas);
+            }
+
+            return res;
         }
 
         // GET: Matriculas/Details/5

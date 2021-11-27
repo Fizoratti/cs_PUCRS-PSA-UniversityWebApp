@@ -43,45 +43,21 @@ namespace UniversityWebApp.Controllers
 
         // GET: Historico/Details/5
         public async Task<IActionResult> Details(int? id)
-        {
+        { 
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var itemHistorico = await _context.Historico
-                .Include(i => i.Disciplina)
-                .FirstOrDefaultAsync(m => m.ItemHistoricoID == id);
-            if (itemHistorico == null)
+            var historico = await _context.Historico
+                .FirstOrDefaultAsync();
+            if (historico == null)
             {
                 return NotFound();
             }
 
-            return View(itemHistorico);
-        }
-
-        // GET: Historico/Create
-        public IActionResult Create()
-        {
-            ViewData["DisciplinaID"] = new SelectList(_context.Disciplinas, "DisciplinaID", "DisciplinaID");
-            return View();
-        }
-
-        // POST: Historico/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemHistoricoID,DisciplinaID,AnoSemestre,Nota")] ItemHistorico itemHistorico)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(itemHistorico);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["DisciplinaID"] = new SelectList(_context.Disciplinas, "DisciplinaID", "DisciplinaID", itemHistorico.DisciplinaID);
-            return View(itemHistorico);
+            return View(historico);
         }
 
         // GET: Historico/Edit/5
@@ -92,84 +68,14 @@ namespace UniversityWebApp.Controllers
                 return NotFound();
             }
 
-            var itemHistorico = await _context.Historico.FindAsync(id);
-            if (itemHistorico == null)
+            var historico = await _context.Historico.FindAsync(id);
+            if (historico == null)
             {
                 return NotFound();
             }
-            ViewData["DisciplinaID"] = new SelectList(_context.Disciplinas, "DisciplinaID", "DisciplinaID", itemHistorico.DisciplinaID);
-            return View(itemHistorico);
+            ViewData["DisciplinaID"] = new SelectList(_context.Disciplinas, "DisciplinaID", "DisciplinaID", historico.DisciplinaID);
+            return View(historico);
         }
 
-        // POST: Historico/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemHistoricoID,DisciplinaID,AnoSemestre,Nota")] ItemHistorico itemHistorico)
-        {
-            if (id != itemHistorico.ItemHistoricoID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(itemHistorico);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ItemHistoricoExists(itemHistorico.ItemHistoricoID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["DisciplinaID"] = new SelectList(_context.Disciplinas, "DisciplinaID", "DisciplinaID", itemHistorico.DisciplinaID);
-            return View(itemHistorico);
-        }
-
-        // GET: Historico/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var itemHistorico = await _context.Historico
-                .Include(i => i.Disciplina)
-                .FirstOrDefaultAsync(m => m.ItemHistoricoID == id);
-            if (itemHistorico == null)
-            {
-                return NotFound();
-            }
-
-            return View(itemHistorico); 
-        }
-
-        // POST: Historico/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var itemHistorico = await _context.Historico.FindAsync(id);
-            _context.Historico.Remove(itemHistorico);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool ItemHistoricoExists(int id)
-        {
-            return _context.Historico.Any(e => e.ItemHistoricoID == id);
-        }
     }
 }
