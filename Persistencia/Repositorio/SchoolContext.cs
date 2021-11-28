@@ -6,6 +6,10 @@ namespace Persistencia.Repositorio
 {
     public class SchoolContext : IdentityDbContext<ApplicationUser>
     {
+        public SchoolContext() : base()
+        {
+        }
+
         public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
         {
         }

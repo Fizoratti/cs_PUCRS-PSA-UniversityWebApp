@@ -41,6 +41,31 @@ namespace UniversityWebApp.Controllers
             return res;
         }
 
+        // GET: Turmas/Matricular/1
+        public async Task<IActionResult> Matricular(int? id)
+        {
+            //var res = NotFound();
+
+            //List<ItemHistorico> historico = null;
+
+            if (id != null && User.Identity.IsAuthenticated)
+            {
+                /*
+                ApplicationUser user = _context.ApplicationUser.FirstOrDefault();
+                historico = await _context.Historico
+                                .Where(e => e.ApplicationUser.Matricula == user.Matricula).ToListAsync();*/
+            }
+
+            if (true)
+            //if (historico != null)
+            {
+                return View();
+                //return View(historico);
+            }
+
+            //return res;
+        }
+
         // GET: Matriculas/Details/5
         public async Task<IActionResult> Details(int? id)
         {

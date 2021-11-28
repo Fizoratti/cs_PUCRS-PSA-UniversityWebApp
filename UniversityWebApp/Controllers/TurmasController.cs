@@ -58,7 +58,7 @@ namespace UniversityWebApp.Controllers
         // GET: Turmas/Create
         public IActionResult Create()
         {
-            ViewData["DisciplinaID"] = new SelectList(_context.Disciplinas, "DisciplinaID", "DisciplinaID");
+            //ViewData["DisciplinaID"] = new SelectList(_context.Disciplinas, "DisciplinaID", "DisciplinaID");
             return View();
         }
 
@@ -75,7 +75,7 @@ namespace UniversityWebApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DisciplinaID"] = new SelectList(_context.Disciplinas, "DisciplinaID", "DisciplinaID", turma.DisciplinaID);
+            //ViewData["DisciplinaID"] = new SelectList(_context.Disciplinas, "DisciplinaID", "DisciplinaID", turma.DisciplinaID);
             return View(turma);
         }
 
@@ -128,7 +128,7 @@ namespace UniversityWebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DisciplinaID"] = new SelectList(_context.Disciplinas, "DisciplinaID", "DisciplinaID", turma.DisciplinaID);
+            //ViewData["DisciplinaID"] = new SelectList(_context.Disciplinas, "DisciplinaID", "DisciplinaID", turma.DisciplinaID);
             return View(turma);
         }
 

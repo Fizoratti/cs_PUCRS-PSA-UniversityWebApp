@@ -25,6 +25,8 @@ Usuários logados no sistema devem poder
 
 ### 2. solicitar matrícula em uma turma
 
+- [x] Criar botão solicitar matrícula
+- [ ] Implementar a função Matricular no MatriculasControler
 - [ ] Editar Index no TurmasController para exibir apenas as que estão liberadas
   - o sistema deve verificar se ainda há vagas na turma solicitada
   - o sistema deve verificar se não há conflito de horários
@@ -44,12 +46,42 @@ Usuários logados no sistema devem poder
 **TODO**
 
 - [x] Criar MatriculasController (Grade de Horários)
+- [x] Criar botão solicitar matrícula
+- [ ] Implementar a função Matricular no MatriculasControler
 
 **Dívida técnica**
 
-- [] (P1 !!!) Não tá dando pra obter os dados usando o Postman
-- [] (P2 !!) Fazer aparecer o nome de cada disciplina nas páginas historico e turma
-- [] (P2 !!) Apenas os métodos Index então funcionando em ambos controllers (clicar edit ou create nao funciona)
-- [] (P3 !) Ajustar layout da caixa de pesquisa de turmas (Design)
+_Negocio_
 
-- [] Encontrar uma forma melhor de obter o id do usuário autenticado: `ApplicationUser user = _context.ApplicationUser.FirstOrDefault();`
+- [ ] Criar Dao's (interface+EF)
+  - [x] Matricula
+  - [ ] Historico
+  - [ ] Turma
+  - [ ] Disciplina
+  - [ ] ApplicationUser
+- [ ] Add métodos no Facade
+
+- [ ] Criar metodos nos DAO's
+  - [ ] Matricula
+    - [x] Matricular
+    - [ ] Desmatricular
+  - [ ] Historico
+  - [ ] Turma
+  - [ ] Disciplina
+  - [ ] ApplicationUser
+
+_Controllers_
+
+- [ ] (P1 !!!) Chamar nos controllers os metodos que estao no Facade do projeto Negocio
+- [ ] (P1 !!!) Os métodos Index então funcionando, mas varios outros controllers não estão (clicar edit ou create nao funciona)
+- [ ] (P1 !!!) Não tá dando pra obter os dados usando o Postman
+
+_Autenticação_
+
+- [ ] (P2 !!) Encontrar uma forma melhor de obter o id do usuário autenticado: `ApplicationUser user = _context.ApplicationUser.FirstOrDefault();`
+
+_Design_
+
+- [ ] (P2 !!) Fazer aparecer o nome de cada disciplina nas páginas historico e turma
+- [ ] (P3 !) Ajustar layout da caixa de pesquisa de turmas (Design)
+- [ ] (P3 !) Ajustar a home do app pra ter alguma coisa pelo menos (Design)
