@@ -24,7 +24,7 @@ namespace Negocio.DAO
         }
 
         public Matricula buscarMatriculas(int id){
-            var matricula = await _context.Matriculas
+            Matricula matricula = await _context.Matriculas
                 .Include(m => m.Turma)
                 .FirstOrDefaultAsync(m => m.MatriculaID == id);
 

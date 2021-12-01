@@ -24,9 +24,11 @@ namespace Negocio.DAO
         }
 
         public Turma buscarTurmaById(int id){
-            var turma = await _context.Turma
+            Turma turma = await _context.Turma
                 .Include(t => t.Disciplina)
                 .FirstOrDefaultAsync(m => m.TurmaID == id);
+            
+            return turma;
         }
 
         public bool criarTurma(Turma turma){
