@@ -15,7 +15,23 @@ namespace Negocio.DAO
     {
         private SchoolContext db = new SchoolContext();
 
-        public bool matricular(int turmaID, string applicationUserMatricula)
+        public List<Matricula> buscarMatriculas(string applicationUserMatricula){
+            
+            var matriculas = await _context.Matriculas.Include(m => m.Turma)
+                                .Where(e => e.ApplicationUser.Matricula == applicationUserMatricula).ToListAsync();
+
+            return matriculas;
+        }
+
+        public Matricula buscarMatriculas(int id){
+            var matricula = await _context.Matriculas
+                .Include(m => m.Turma)
+                .FirstOrDefaultAsync(m => m.MatriculaID == id);
+
+            return matriculas;
+        }
+
+        public bool matricularAluno(int turmaID, string applicationUserMatricula)
         {
             var matricula = db.Matriculas.
             Include("Turma").FirstOrDefault(m => m.MatriculaID == turmaID);
@@ -23,21 +39,21 @@ namespace Negocio.DAO
             matricula.ApplicationUser.Matricula = applicationUserMatricula;
 
             db.SaveChanges();
+            
             return true;
         }
 
-        /*
-        public bool comprarItem(int id, string compradorID)
-        {
-            var itemVenda = db.ItemsVendas.
-            Include("Status").Include("Vendedor").FirstOrDefault(m => m.ItemVendaId == id);
-
-            itemVenda.StatusID = 2;
-            itemVenda.CompradorID = compradorID;
-
-            db.SaveChanges();
+        public bool editarMatriculaAluno(int id){
             return true;
         }
-        */
+        
+        public bool excluirMatriculaAluno(int id){
+            return true;
+        }
+        
+        public bool verificaExistenciaMatricula(int id){
+            return true;
+        }
+
     }
 }
