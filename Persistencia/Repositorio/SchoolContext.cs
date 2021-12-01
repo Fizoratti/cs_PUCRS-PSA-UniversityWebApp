@@ -38,7 +38,7 @@ namespace Persistencia.Repositorio
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder
-                  .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=UniversityDB;Trusted_Connection=True");
+                  .UseSqlServer(@"Server=W10781D0B3\SQLEXPRESS;Database=UniversityDB;Trusted_Connection=True;MultipleActiveResultSets=true");
                 base.OnConfiguring(optionsBuilder);
             }
         }

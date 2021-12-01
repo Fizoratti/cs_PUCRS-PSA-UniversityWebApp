@@ -10,6 +10,6 @@ namespace Negocio.DAO
 {
     interface DAOHistorico
     {
-        bool matricular(int id, string applicationUserMatricula);
+        List<Historico> buscarHistorico(string applicationUserMatricula);
     }
 }
