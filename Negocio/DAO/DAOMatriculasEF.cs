@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Persistencia.Repositorio;
-using System;
 using Entidades.Models;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace Negocio.DAO
@@ -17,18 +12,18 @@ namespace Negocio.DAO
 
         public List<Matricula> buscarMatriculas(string applicationUserMatricula){
             
-            var matriculas = await _context.Matriculas.Include(m => m.Turma)
-                                .Where(e => e.ApplicationUser.Matricula == applicationUserMatricula).ToListAsync();
+            var matriculas = db.Matriculas.Include(m => m.Turma)
+                                .Where(e => e.ApplicationUser.Matricula == applicationUserMatricula).ToList();
 
             return matriculas;
         }
 
         public Matricula buscarMatriculas(int id){
-            Matricula matricula = await _context.Matriculas
+            Matricula matricula = db.Matriculas
                 .Include(m => m.Turma)
-                .FirstOrDefaultAsync(m => m.MatriculaID == id);
+                .FirstOrDefault(m => m.MatriculaID == id);
 
-            return matriculas;
+            return matricula;
         }
 
         public bool matricularAluno(int turmaID, string applicationUserMatricula)

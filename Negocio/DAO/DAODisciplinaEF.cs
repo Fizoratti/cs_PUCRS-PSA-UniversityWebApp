@@ -12,10 +12,10 @@ namespace Negocio.DAO
         private SchoolContext db = new SchoolContext();
         
 
-        public Disciplina buscarDiciplinaPorCodCredAsync(string codCred)
+        public Disciplina buscarDiciplinaPorCodCred(string codCred)
         {
             Disciplina d = db.Disciplinas.Where(x =>
-                x.codCred.Contains(codCred)
+                x.Codcred.Contains(codCred)
             )
                 .FirstOrDefault();
 
@@ -26,14 +26,14 @@ namespace Negocio.DAO
         public Disciplina buscarDiciplinaPorNome(string nome)
         {
             Disciplina d = db.Disciplinas.Where(x =>
-                x.nome.Contains(nome)
+                x.Nome.Contains(nome)
             )
                 .FirstOrDefault();
 
             return d;
         }
 
-        public List<Disciplina> ListarRequisitosDisciplinas(Disciplina d)
+        public List<Disciplina> listarRequisitosDisciplinas(Disciplina d)
         {
              var disciplina = d.Requerimentos.ToList();
              
@@ -42,7 +42,7 @@ namespace Negocio.DAO
 
         public List<Disciplina> visualizarDisciplinas()
         {
-             var disciplina = db.Disciplinas.ToList();
+            List<Disciplina> disciplina = (List<Disciplina>)db.Disciplinas.ToList();
              
             return disciplina;
             

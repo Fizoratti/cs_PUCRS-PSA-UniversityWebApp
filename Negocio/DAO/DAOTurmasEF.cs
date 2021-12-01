@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Persistencia.Repositorio;
-using System;
 using Entidades.Models;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace Negocio.DAO
@@ -16,17 +12,17 @@ namespace Negocio.DAO
         private SchoolContext db = new SchoolContext();
 
         public List<Turma> buscarTurmas(string searchString){
-            var turmas = turmas.Where(t => t.Disciplina.Codcred.Contains(searchString)
+            var turmas = db.Turma.Where(t => t.Disciplina.Codcred.Contains(searchString)
                                     || t.Horario.Contains(searchString)
-                                    || t.Numero.Contains(searchString));
+                                    || t.Numero.Contains(searchString)).ToList();
 
             return turmas;
         }
 
         public Turma buscarTurmaById(int id){
-            Turma turma = await _context.Turma
+            Turma turma = db.Turma
                 .Include(t => t.Disciplina)
-                .FirstOrDefaultAsync(m => m.TurmaID == id);
+                .FirstOrDefault(m => m.TurmaID == id);
             
             return turma;
         }

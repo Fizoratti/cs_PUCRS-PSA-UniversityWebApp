@@ -13,7 +13,7 @@ namespace Negocio
 
         public Boolean Matricular(int turmaID, string applicationUserMatricula)
         {
-            return dados.matricular(turmaID, applicationUserMatricula);
+            return dados.matricularAluno(turmaID, applicationUserMatricula);
         }
     }
 }

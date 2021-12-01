@@ -12,11 +12,11 @@ namespace Negocio.DAO
         //retornar uma disciplina
         Disciplina buscarDiciplinaPorNome(String nome);
 
-        Disciplina buscarDiciplinaPorCodCredAsync(String codCred);
+        Disciplina buscarDiciplinaPorCodCred(String codCred);
         
 
         //Listar quais disciplinas são requisitos.
-        List<Disciplina> ListarRequisitosDisciplinas(Disciplina d);
+        List<Disciplina> listarRequisitosDisciplinas(Disciplina d);
 
     }
 }
