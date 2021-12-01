@@ -15,15 +15,12 @@ namespace Negocio.DAO
     {
         private SchoolContext db = new SchoolContext();
 
-        public bool matricular(int turmaID, string applicationUserMatricula)
-        {
-            var matricula = db.Matriculas.
-            Include("Turma").FirstOrDefault(m => m.MatriculaID == turmaID);
+        public List<Historico> buscarHistorico(string applicationUserMatricula){
 
-            matricula.ApplicationUser.Matricula = applicationUserMatricula;
+            var historico = await _context.Historico
+                                .Where(e => e.ApplicationUser.Matricula == applicationUserMatricula).ToListAsync();
 
-            db.SaveChanges();
-            return true;
-        }
+            return historico;         
+         }
     }
 }
