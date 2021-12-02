@@ -13,6 +13,7 @@ namespace Negocio
         private DAOTurmas _turmas;
         private DAOUsuarios _usuarios;
         private DAOMatriculas _matriculas;
+        
 
         public Facade(DAOTurmas dAOTurmas, DAOUsuarios daoUsuarios, DAOMatriculas daoMatriculas)
         {
@@ -34,6 +35,13 @@ namespace Negocio
             if (turma.Vagas == 0) {
                 throw new ArgumentException("Não possui vagas disponíveis.");//Gerar erro de não há vagas
             }
+            
+          /*
+            if (usuario.Matriculas.Equals(turma.DisciplinaID)) {
+
+                throw new ArgumentException("Você já se matriculou nessa disciplina");//Gerar erro já se matriculou
+            }
+          */
             turma.Vagas--;
 
             //verificar requisitos...
@@ -46,6 +54,13 @@ namespace Negocio
             await _matriculas.Salvar(matricula);
             
         }
+        public async Task Desmatricular(int turmaID) {
+
+            var turma = await _turmas.ComId(turmaID);
+            turma.Vagas++;
+
+        }
+
 
         public List<Matricula> Listar(string applicationUserMatricula)
         {

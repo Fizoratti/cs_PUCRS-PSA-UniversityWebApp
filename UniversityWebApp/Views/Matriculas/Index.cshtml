@@ -1,42 +1,44 @@
 ﻿@model IEnumerable<Entidades.Models.Matricula>
 
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Grade de Horários";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Gerar comprovante de matrícula</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUserID)
+                <p>Disciplina</p>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Turma)
+                <p>Horário</p>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUserID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Turma.TurmaID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MatriculaID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MatriculaID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MatriculaID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Turma.Disciplina.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Turma.Horario)
+                </td>
+                <td>
+                    <!-- <a asp-action="Edit" asp-route-id="@item.MatriculaID">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.MatriculaID">Details</a> |-->
+                    <a asp-action="Delete" asp-route-id="@item.MatriculaID">Retirar matricula</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

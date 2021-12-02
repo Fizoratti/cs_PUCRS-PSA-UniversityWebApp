@@ -11,6 +11,7 @@ namespace Negocio.DAO
     public class DAOTurmasEF : DAOTurmas
     {
         private SchoolContext _context;
+       
 
         public DAOTurmasEF(SchoolContext context)
         {
@@ -56,6 +57,12 @@ namespace Negocio.DAO
         public Task<bool> DiminuirVaga(int turmaID)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task Salvar(Turma turma)
+        {
+            await _context.Turma.AddAsync(turma);
+            await _context.SaveChangesAsync();
         }
     }
 }

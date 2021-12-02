@@ -148,6 +148,7 @@ namespace UniversityWebApp.Controllers
             var matricula = await _context.Matriculas
                 .Include(m => m.Turma)
                 .FirstOrDefaultAsync(m => m.MatriculaID == id);
+            
             if (matricula == null)
             {
                 return NotFound();

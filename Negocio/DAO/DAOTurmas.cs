@@ -17,7 +17,8 @@ namespace Negocio.DAO
         bool deletarTurma(int id);
         Task<Turma> ComId(int turmaID);
 
-       
+        Task Salvar(Turma turma);
+
         Task<bool> DiminuirVaga(int turmaID);
     }
 }
