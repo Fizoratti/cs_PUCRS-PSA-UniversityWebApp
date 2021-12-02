@@ -1,4 +1,5 @@
-﻿using Negocio.DAO;
+﻿using Entidades.Models;
+using Negocio.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,14 @@ namespace Negocio
     {
         private DAOMatriculas dados = new DAOMatriculasEF();
 
-        public Boolean Matricular(int turmaID, string applicationUserMatricula)
+        public void Matricular(int turmaID, string applicationUserMatricula)
         {
-            return dados.matricularAluno(turmaID, applicationUserMatricula);
+            dados.matricularAluno(turmaID, applicationUserMatricula);
+        }
+
+        public List<Matricula> Listar(string applicationUserMatricula)
+        {
+            return dados.buscarMatriculas(applicationUserMatricula);
         }
     }
 }

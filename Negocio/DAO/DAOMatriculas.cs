@@ -12,7 +12,7 @@ namespace Negocio.DAO
     {
         List<Matricula> buscarMatriculas(string applicationUserMatricula);
         Matricula buscarMatriculas(int id);
-        bool matricularAluno(int id, string applicationUserMatricula);
+        void matricularAluno(int id, string applicationUserMatricula);
         bool editarMatriculaAluno(int id);
         bool excluirMatriculaAluno(int id);
         bool verificaExistenciaMatricula(int id);
