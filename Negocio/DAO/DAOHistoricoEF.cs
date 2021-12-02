@@ -6,13 +6,19 @@ using Entidades.Models;
 
 namespace Negocio.DAO
 {
-    class DAOHistoricoEF : DAOHistorico
+    public class DAOHistoricoEF : DAOHistorico
     {
-        private SchoolContext db = new SchoolContext();
+        private readonly SchoolContext _schoolContext;
+
+        public DAOHistoricoEF(SchoolContext schoolContext)
+        {
+            this._schoolContext = schoolContext;
+        }
+
 
         public List<ItemHistorico> buscarHistorico(string applicationUserMatricula){
 
-            var historico = db.Historico
+            var historico = _schoolContext.Historico
                                 .Where(e => e.ApplicationUser.Matricula == applicationUserMatricula).ToList();
 
             return historico;         

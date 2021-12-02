@@ -8,7 +8,7 @@ using Entidades.Models;
 
 namespace Negocio.DAO
 {
-    interface DAOTurmas
+    public interface DAOTurmas
     {
         List<Turma> buscarTurmas(string searchString);
         Turma BuscarTurmaById(int id);

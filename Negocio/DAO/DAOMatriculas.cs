@@ -8,7 +8,7 @@ using Entidades.Models;
 
 namespace Negocio.DAO
 {
-    interface DAOMatriculas
+    public interface DAOMatriculas
     {
         List<Matricula> buscarMatriculas(string applicationUserMatricula);
         Matricula buscarMatriculas(int id);

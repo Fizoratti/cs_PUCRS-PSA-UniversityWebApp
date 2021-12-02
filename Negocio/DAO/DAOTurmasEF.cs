@@ -8,12 +8,17 @@ using System.Threading.Tasks;
 
 namespace Negocio.DAO
 {
-    class DAOTurmasEF : DAOTurmas
+    public class DAOTurmasEF : DAOTurmas
     {
-        private SchoolContext db = new SchoolContext();
+        private SchoolContext _context;
+
+        public DAOTurmasEF(SchoolContext context)
+        {
+            _context = context;
+        }
 
         public List<Turma> buscarTurmas(string searchString){
-            var turmas = db.Turma.Where(t => t.Disciplina.Codcred.Contains(searchString)
+            var turmas = _context.Turma.Where(t => t.Disciplina.Codcred.Contains(searchString)
                                     || t.Horario.Contains(searchString)
                                     || t.Numero.Contains(searchString)).ToList();
 
@@ -21,7 +26,7 @@ namespace Negocio.DAO
         }
 
         public async Task<Turma> ComId(int id) {
-            Turma turma = await db.Turma
+            Turma turma = await _context.Turma
               .Include(t => t.Disciplina)
               .FirstOrDefaultAsync(m => m.TurmaID == id);
 
@@ -29,7 +34,7 @@ namespace Negocio.DAO
         }
     
         public Turma BuscarTurmaById(int id){
-            Turma turma =  db.Turma
+            Turma turma = _context.Turma
                 .Include(t => t.Disciplina)
                 .FirstOrDefault(m => m.TurmaID == id);
             
@@ -48,12 +53,9 @@ namespace Negocio.DAO
             return true;
         }
 
-        public async Task<bool> DiminuirVaga(int IdTurma) {
-            
-            var turma =  BuscarTurmaById(IdTurma);
-            turma.Vagas--;
-            return true;
+        public Task<bool> DiminuirVaga(int turmaID)
+        {
+            throw new NotImplementedException();
         }
-
     }
 }

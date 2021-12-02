@@ -14,11 +14,12 @@ namespace UniversityWebApp.Controllers
     public class TurmasController : Controller
     {
         private readonly SchoolContext _context;
-        private Facade _facade;
+        private readonly Facade _facade;
 
-        public TurmasController(SchoolContext context)
+        public TurmasController(SchoolContext context, Facade facade)
         {
             _context = context;
+            _facade = facade;
         }
 
         // GET: Turmas

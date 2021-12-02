@@ -10,15 +10,22 @@ namespace Negocio
 {
     public class Facade
     {
-        private DAOMatriculas _matriculas = new DAOMatriculasEF();
-        private DAOUsuarioEF _usuarios = new DAOUsuarioEF();
-        private DAOTurmas _turmas = new DAOTurmasEF();
+        private DAOTurmas _turmas;
+        private DAOUsuarios _usuarios;
+        private DAOMatriculas _matriculas;
+
+        public Facade(DAOTurmas dAOTurmas, DAOUsuarios daoUsuarios, DAOMatriculas daoMatriculas)
+        {
+            _turmas = dAOTurmas;
+            _usuarios = daoUsuarios;
+            _matriculas = daoMatriculas;
+        }
 
         public async Task Matricular(int turmaID, string emailDoUsuario)
         {
             var turma = await _turmas.ComId(turmaID);
             //var usuario = await _usuarios.ComEmail(emailDoUsuario);
-            var usuario = _usuarios.getUser();
+            var usuario = await _usuarios.ComEmail(emailDoUsuario);
             // buscar todos os horários de curso que esse usuário tem, e verificar se não é o mesmo horário que o curso que ele tá tentando matricular
             //if (!usuario.TemHorarioLivre(turma.Horario))
             //{
@@ -27,13 +34,13 @@ namespace Negocio
             if (turma.Vagas == 0) {
                 throw new ArgumentException("Não possui vagas disponíveis.");//Gerar erro de não há vagas
             }
+            turma.Vagas--;
 
             //verificar requisitos...
 
             var matricula = new Matricula()
             {
-                Turma = turma,
-                
+                Turma = turma,                
                 ApplicationUser = usuario
             };
             await _matriculas.Salvar(matricula);
