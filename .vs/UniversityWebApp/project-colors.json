@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "088a16b3-748f-4619-a8ec-b16777a55b35": {
+      "ProjectGuid": "088a16b3-748f-4619-a8ec-b16777a55b35",
+      "DisplayName": "Persistencia",
+      "ColorIndex": 0
+    },
+    "4221ab7d-4723-491b-b2ad-96672c942b2b": {
+      "ProjectGuid": "4221ab7d-4723-491b-b2ad-96672c942b2b",
+      "DisplayName": "UniversityWebApp",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
