@@ -26,16 +26,25 @@ namespace Negocio.DAO
             return matricula;
         }
 
-        public bool matricularAluno(int turmaID, string applicationUserMatricula)
+        public void matricularAluno(int turmaID, string applicationUserMatricula)
         {
-            var matricula = db.Matriculas.
-            Include("Turma").FirstOrDefault(m => m.MatriculaID == turmaID);
+            //var matricula = await db.Matriculas.
+            //Include("Turma").FirstOrDefaultAsync(m => m.MatriculaID == turmaID);
 
-            matricula.ApplicationUser.Matricula = applicationUserMatricula;
+            //matricula.ApplicationUser.Matricula = applicationUserMatricula;
+
+            ApplicationUser user = db.ApplicationUser.Where(x => x.Matricula.Contains(applicationUserMatricula)).Single();
+
+            Matricula matricula = new Matricula
+            {
+                ApplicationUserID = user.Id,
+                TurmaID = turmaID,
+            };
+
+            db.Matriculas.Add(matricula);
 
             db.SaveChanges();
-            
-            return true;
+          
         }
 
         public bool editarMatriculaAluno(int id){

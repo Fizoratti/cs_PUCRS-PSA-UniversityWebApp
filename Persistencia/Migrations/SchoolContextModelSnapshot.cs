@@ -143,7 +143,7 @@ namespace Persistencia.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApplicationUserId")
+                    b.Property<string>("ApplicationUserID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("TurmaID")
@@ -151,7 +151,7 @@ namespace Persistencia.Migrations
 
                     b.HasKey("MatriculaID");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("ApplicationUserID");
 
                     b.HasIndex("TurmaID");
 
@@ -339,8 +339,8 @@ namespace Persistencia.Migrations
             modelBuilder.Entity("Entidades.Models.Matricula", b =>
                 {
                     b.HasOne("Entidades.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
+                        .WithMany("Matriculas")
+                        .HasForeignKey("ApplicationUserID");
 
                     b.HasOne("Entidades.Models.Turma", "Turma")
                         .WithMany()
@@ -418,6 +418,8 @@ namespace Persistencia.Migrations
             modelBuilder.Entity("Entidades.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Historico");
+
+                    b.Navigation("Matriculas");
                 });
 #pragma warning restore 612, 618
         }

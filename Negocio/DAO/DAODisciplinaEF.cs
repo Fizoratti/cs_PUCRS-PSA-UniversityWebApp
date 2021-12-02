@@ -33,12 +33,12 @@ namespace Negocio.DAO
             return d;
         }
 
-        public List<Disciplina> listarRequisitosDisciplinas(Disciplina d)
-        {
-             var disciplina = d.Requerimentos.ToList();
+        //public List<Disciplina> listarRequisitosDisciplinas(Disciplina d)
+        //{
+        //     var disciplina = d.Requerimentos.ToList();
              
-            return disciplina;
-        }
+        //    return disciplina;
+        //}
 
         public List<Disciplina> visualizarDisciplinas()
         {

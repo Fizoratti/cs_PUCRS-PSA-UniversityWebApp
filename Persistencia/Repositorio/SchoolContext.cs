@@ -32,5 +32,19 @@ namespace Persistencia.Repositorio
 
             base.OnModelCreating(modelBuilder);
         }
+<<<<<<< HEAD
+=======
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder
+                  .UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;");
+                base.OnConfiguring(optionsBuilder);
+            }
+        }
+
+>>>>>>> 6fcb9263f5552c8ad37b7f3b5bcec34b9250969f
     }
 }

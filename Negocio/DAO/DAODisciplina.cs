@@ -16,7 +16,7 @@ namespace Negocio.DAO
         
 
         //Listar quais disciplinas são requisitos.
-        List<Disciplina> listarRequisitosDisciplinas(Disciplina d);
+        //List<Disciplina> listarRequisitosDisciplinas(Disciplina d);
 
     }
 }

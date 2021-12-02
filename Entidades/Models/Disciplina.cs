@@ -9,7 +9,5 @@ namespace Entidades.Models
         public int DisciplinaID { get; set; }
         public string Codcred { get; set; }
         public string Nome { get; set; }
-
-        public virtual ICollection<Disciplina> Requerimentos { get; set; }
     }
 }

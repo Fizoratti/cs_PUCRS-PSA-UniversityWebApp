@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Negocio\\DAO",
+    "\\Persistencia",
+    "\\Persistencia\\Repositorio",
+    "\\UniversityWebApp",
+    "\\UniversityWebApp\\Views",
+    "\\UniversityWebApp\\Views\\Home"
   ],
-  "SelectedNode": "\\ContosoUniversity.sln",
+  "SelectedNode": "\\Persistencia\\Repositorio\\SchoolContext.cs",
   "PreviewInSolutionExplorer": false
 }
