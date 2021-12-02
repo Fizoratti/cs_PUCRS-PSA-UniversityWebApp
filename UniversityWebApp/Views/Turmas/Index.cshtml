@@ -33,8 +33,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Vagas)
-            </th>
-            <th></th>
+            </th>            
         </tr>
     </thead>
     <tbody>
@@ -56,13 +55,9 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.TurmaID">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.TurmaID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.TurmaID">Delete</a>
-
+                    <a asp-action="Delete" asp-route-id="@item.TurmaID">Delete</a>                    
                     <a asp-action="Matricular" asp-route-id="@item.TurmaID">Solicitar Matrícula</a>
-                </td>
-                <td>
-                    <button>Click Aqui</button>
-                </td>
+                </td>                
             </tr>
         }
     </tbody>

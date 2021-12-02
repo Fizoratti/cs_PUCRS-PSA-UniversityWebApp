@@ -28,20 +28,9 @@ namespace Persistencia.Repositorio
             modelBuilder.Entity<Disciplina>().ToTable("Disciplina");
             modelBuilder.Entity<ItemHistorico>().ToTable("Historico");
             modelBuilder.Entity<Turma>().ToTable("Turma");
-            modelBuilder.Entity<Matricula>().ToTable("Matricula");
+            modelBuilder.Entity<Matricula>().ToTable("Matricula");            
 
             base.OnModelCreating(modelBuilder);
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder
-                  .UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;");
-                base.OnConfiguring(optionsBuilder);
-            }
-        }
-
     }
 }

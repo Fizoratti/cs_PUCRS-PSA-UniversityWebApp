@@ -3,6 +3,7 @@ using System.Linq;
 using Persistencia.Repositorio;
 using Entidades.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Negocio.DAO
 {
@@ -45,6 +46,12 @@ namespace Negocio.DAO
 
             db.SaveChanges();
           
+        }
+
+        public async Task Salvar(Matricula matricula)
+        {
+            await db.Matriculas.AddAsync(matricula);
+            await db.SaveChangesAsync();
         }
 
         public bool editarMatriculaAluno(int id){

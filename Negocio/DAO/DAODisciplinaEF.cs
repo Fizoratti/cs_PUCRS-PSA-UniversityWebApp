@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Entidades.Models;
 using Persistencia.Repositorio;
 
@@ -12,15 +15,13 @@ namespace Negocio.DAO
         private SchoolContext db = new SchoolContext();
         
 
-        public Disciplina buscarDiciplinaPorCodCred(string codCred)
+        public async Task<Disciplina> buscarDiciplinaPorCodCred(string codCred)
         {
-            Disciplina d = db.Disciplinas.Where(x =>
+            var disciplina = await db.Disciplinas.Where(x =>
                 x.Codcred.Contains(codCred)
-            )
-                .FirstOrDefault();
+            ).FirstOrDefaultAsync();
 
-            return d;
-            
+            return disciplina;            
         }
 
         public Disciplina buscarDiciplinaPorNome(string nome)

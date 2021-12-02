@@ -11,9 +11,13 @@ namespace Negocio.DAO
     interface DAOTurmas
     {
         List<Turma> buscarTurmas(string searchString);
-        Turma buscarTurmaById(int id);
+        Turma BuscarTurmaById(int id);
         bool criarTurma(Turma turma);
         bool editarTurma(Turma turma);
         bool deletarTurma(int id);
+        Task<Turma> ComId(int turmaID);
+
+       
+        Task<bool> DiminuirVaga(int turmaID);
     }
 }
