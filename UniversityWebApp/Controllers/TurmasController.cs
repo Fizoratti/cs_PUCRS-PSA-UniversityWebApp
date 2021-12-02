@@ -25,18 +25,8 @@ namespace UniversityWebApp.Controllers
         // GET: Turmas
         public async Task<IActionResult> Index(string searchString)
         {
-            ViewData["CurrentFilter"] = searchString;
-
-            var turmas = from t in _context.Turma.Include(p=> p.Disciplina)
-                            select t;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                turmas = turmas.Where(t => t.Disciplina.Codcred.Contains(searchString)
-                                    || t.Horario.Contains(searchString)
-                                    || t.Numero.Contains(searchString));
-            }
-            return View(await turmas.AsNoTracking().ToListAsync());
-            // return View(await _context.Turma.ToListAsync());
+            var turmas = await _facade.ListarTurmas(searchString);
+            return View(turmas);
         }
         
         // Aqui fica coisas de HTML, como pegar o User.Identity e retornar uma action (como uma view ou um redirect
@@ -50,7 +40,7 @@ namespace UniversityWebApp.Controllers
             }
             catch(ArgumentException excecao)
             {
-                return RedirectToAction("ErroAoMatricular", "Matriculas", excecao.Message);
+                return RedirectToAction("Index", "Error", new { Error = excecao.Message });
             }
         }
 

@@ -18,8 +18,9 @@ namespace Negocio.DAO
 
         public List<Matricula> buscarMatriculas(string applicationUserMatricula){
             
-            var matriculas = _schoolContext.Matriculas.Include(m => m.Turma)
-                                .Where(e => e.ApplicationUser.Matricula == applicationUserMatricula).ToList();
+            var matriculas = _schoolContext.Matriculas
+                                           .Include(m => m.Turma)
+                                            .Where(e => e.ApplicationUser.Matricula == applicationUserMatricula).ToList();
 
             return matriculas;
         }

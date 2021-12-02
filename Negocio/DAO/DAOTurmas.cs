@@ -11,6 +11,7 @@ namespace Negocio.DAO
     public interface DAOTurmas
     {
         List<Turma> buscarTurmas(string searchString);
+        Task<IEnumerable<Turma>> ListarTurmas(string pesquisa);
         Turma BuscarTurmaById(int id);
         bool criarTurma(Turma turma);
         bool editarTurma(Turma turma);
