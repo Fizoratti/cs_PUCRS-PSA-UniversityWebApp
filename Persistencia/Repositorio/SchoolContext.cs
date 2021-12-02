@@ -32,16 +32,5 @@ namespace Persistencia.Repositorio
 
             base.OnModelCreating(modelBuilder);
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder
-                  .UseSqlServer(@"Server=W10781D0B3\SQLEXPRESS;Database=UniversityDB;Trusted_Connection=True;MultipleActiveResultSets=true");
-                base.OnConfiguring(optionsBuilder);
-            }
-        }
-
     }
 }
