@@ -15,5 +15,6 @@ namespace Negocio.DAO
         bool criarTurma(Turma turma);
         bool editarTurma(Turma turma);
         bool deletarTurma(int id);
+        Task ComId(int turmaID);
     }
 }

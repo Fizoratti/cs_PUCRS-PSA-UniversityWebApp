@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Entidades.Models;
 
 namespace Negocio.DAO
@@ -12,7 +13,7 @@ namespace Negocio.DAO
         //retornar uma disciplina
         Disciplina buscarDiciplinaPorNome(String nome);
 
-        Disciplina buscarDiciplinaPorCodCred(String codCred);
+        Task<Disciplina> buscarDiciplinaPorCodCred(String codCred);
         
 
         //Listar quais disciplinas são requisitos.

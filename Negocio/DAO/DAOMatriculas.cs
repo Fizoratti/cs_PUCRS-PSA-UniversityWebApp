@@ -16,5 +16,6 @@ namespace Negocio.DAO
         bool editarMatriculaAluno(int id);
         bool excluirMatriculaAluno(int id);
         bool verificaExistenciaMatricula(int id);
+        Task Salvar(Matricula matricula);
     }
 }

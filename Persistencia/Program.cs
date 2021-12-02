@@ -25,8 +25,7 @@ namespace Persistencia
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<SchoolContext>();
-                    DbInitializer.Initialize(context);
+                    var context = services.GetRequiredService<SchoolContext>();                    
                 }
                 catch (Exception ex)
                 {
