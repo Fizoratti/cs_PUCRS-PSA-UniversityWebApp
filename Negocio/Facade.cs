@@ -34,7 +34,12 @@ namespace Negocio
             if (usuario.ContemMatriculaParaTurma(turma))
             {
                 throw new ArgumentException("Esse usuário já possue uma matricula para esta turma");
-            }                              
+            }
+
+            if (usuario.VerificaSeConflitaHorario(turma))
+            {
+                throw new ArgumentException("Esse usuário tem conflito na grade de horários");
+            }
 
             var matricula = new Matricula()
             {

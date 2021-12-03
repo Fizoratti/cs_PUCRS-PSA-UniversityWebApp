@@ -20,6 +20,41 @@ namespace Entidades.Models
 
         public virtual ICollection<ItemHistorico> Historico { get; set; }
         public virtual ICollection<Matricula> Matriculas { get; set; }
+        public ICollection<string> Horarios
+        {
+            get
+            {
+                var _horarios = new List<string>();
+                foreach (Matricula matricula in Matriculas)
+                {
+                    if (matricula.Turma.Horario.Length < 3)
+                    {
+                        _horarios.Add(matricula.Turma.Horario);
+                    }
+                    else
+                    {
+                        var primeiroHorario = "";
+                        var segundoHorario = "";
+                        var teste = matricula.Turma.Horario.ToCharArray();
+                        foreach (char letra in teste)
+                        {
+                            if (primeiroHorario.Length < 3)
+                            {
+                                primeiroHorario = primeiroHorario + letra;
+                            }
+                            else
+                            {
+                                segundoHorario = segundoHorario + letra;
+                            }
+                        }
+                        _horarios.Add(primeiroHorario);
+                        _horarios.Add(segundoHorario);
+                    }
+                }
+                return _horarios;
+            }
+        }
+
 
         public ApplicationUser()
         {
@@ -30,6 +65,57 @@ namespace Entidades.Models
         public bool ContemMatriculaParaTurma(Turma turma)
         {
             return Matriculas.Any(p => p.TurmaID == turma.TurmaID);
+        }
+
+        public bool VerificaSeConflitaHorario(Turma turma)
+        {
+            var primeiroHorario = "";
+            var segundoHorario = "";
+            if (turma.Horario.Length <= 3)
+            {
+                primeiroHorario = turma.Horario;
+            }
+            else
+            {
+                var teste = turma.Horario.ToCharArray();
+                foreach (char letra in teste)
+                {
+                    if (primeiroHorario.Length < 3)
+                    {
+                        primeiroHorario = primeiroHorario + letra;
+                    }
+                    else
+                    {
+                        segundoHorario = segundoHorario + letra;
+                    }
+                }
+
+
+
+            }
+            var booleano = Horarios.Contains(primeiroHorario) || Horarios.Contains(segundoHorario);
+            return booleano;
+        }
+
+        private void teste()
+        {
+            foreach (Matricula matricula in Matriculas)
+            {
+                if (matricula.Turma.Horario.Length > 3)
+                {
+                    Horarios.Add(matricula.Turma.Horario);
+                }
+                else
+                {
+                    var teste = matricula.Turma.Horario.Split("");
+                    var primeiroHorario = teste[0] + teste[1] + teste[2];
+                    var segundoHorario = teste[3] + teste[4] + teste[5];
+                    Horarios.Add(primeiroHorario);
+                    Horarios.Add(segundoHorario);
+
+                }
+
+            }
         }
     }
 }
