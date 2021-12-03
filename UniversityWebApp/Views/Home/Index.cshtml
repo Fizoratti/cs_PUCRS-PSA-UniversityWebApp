@@ -1,27 +1,73 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using Entidades.Models;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
         ViewData["Title"] = "Home Page";
 }
 
-<div class="jumbotron">
-    <h3>Bem vindo</h3>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        
-        <p>
-            <input type="button" value="Grade de matriculas">
-           
-        </p>
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="jumbotron">
+        <h3>Bem vindo ao Matrículas PSA @User.Identity.Name!</h3>
     </div>
-    <div class="col-md-4">
-        <button type="button" value="Historico" onclick="location.href='@Url.Action("Index")'" />
-      
-   
+    <h3>Sou Aluno</h3>
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <a class="text-decoration-none text-reset" href="#">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa fa-calendar"></i> Grade de matriculas</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="text-decoration-none text-reset" href="#">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa fa-book"></i> Historico</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="text-decoration-none text-reset" href="#">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa fa-group"></i> Turmas</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div> 
+    <partial name="Index_coordenador" />
+}
+else
+{
+    <div class="jumbotron">
+        <h3>Bem vindo ao Matrículas PSA</h3>
     </div>
-    <div class="col-md-4">
-        <input type="button" value="Turmas">
-      
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <a class="text-decoration-none text-reset" href="#">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa fa-group"></i> Turmas</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div> 
+}
 
-    </div>
-</div> 
+
 
