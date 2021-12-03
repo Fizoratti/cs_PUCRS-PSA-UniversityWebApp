@@ -7,14 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Entidades.Models;
 using Persistencia.Repositorio;
-using Negocio;
 
 namespace UniversityWebApp.Controllers
 {
     public class TurmasController : Controller
     {
         private readonly SchoolContext _context;
-        private Facade _facade;
 
         public TurmasController(SchoolContext context)
         {
@@ -26,7 +24,7 @@ namespace UniversityWebApp.Controllers
         {
             ViewData["CurrentFilter"] = searchString;
 
-            var turmas = from t in _context.Turma.Include(p=> p.Disciplina)
+            var turmas = from t in _context.Turma
                             select t;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -36,21 +34,6 @@ namespace UniversityWebApp.Controllers
             }
             return View(await turmas.AsNoTracking().ToListAsync());
             // return View(await _context.Turma.ToListAsync());
-        }
-        
-        // Aqui fica coisas de HTML, como pegar o User.Identity e retornar uma action (como uma view ou um redirect
-        public async Task<IActionResult> Matricular(int id)
-        {
-            try
-            {
-                var emailDoUsuario = User.Identity.Name;
-                await _facade.Matricular(id, emailDoUsuario);
-                return RedirectToAction("Index", "Matriculas");
-            }
-            catch(ArgumentException excecao)
-            {
-                return RedirectToAction("ErroAoMatricular", "Matriculas", excecao.Message);
-            }
         }
 
         // GET: Turmas/Details/5
