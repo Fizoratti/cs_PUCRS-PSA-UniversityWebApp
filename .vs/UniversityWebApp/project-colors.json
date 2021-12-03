@@ -10,7 +10,12 @@
       "ProjectGuid": "4221ab7d-4723-491b-b2ad-96672c942b2b",
       "DisplayName": "UniversityWebApp",
       "ColorIndex": 1
+    },
+    "d139de44-6021-4774-9a1c-fc120bb71c2e": {
+      "ProjectGuid": "d139de44-6021-4774-9a1c-fc120bb71c2e",
+      "DisplayName": "Negocio",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 3
 }

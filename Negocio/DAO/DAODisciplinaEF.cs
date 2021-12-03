@@ -12,12 +12,17 @@ namespace Negocio.DAO
 {
     public class DAODisciplinaEF : DAODisciplina
     {
-        private SchoolContext db = new SchoolContext();
-        
+        private readonly SchoolContext _schoolContext;
+
+        public DAODisciplinaEF(SchoolContext schoolContext)
+        {
+            this._schoolContext = schoolContext;
+        }
+
 
         public async Task<Disciplina> buscarDiciplinaPorCodCred(string codCred)
         {
-            var disciplina = await db.Disciplinas.Where(x =>
+            var disciplina = await _schoolContext.Disciplinas.Where(x =>
                 x.Codcred.Contains(codCred)
             ).FirstOrDefaultAsync();
 
@@ -26,7 +31,7 @@ namespace Negocio.DAO
 
         public Disciplina buscarDiciplinaPorNome(string nome)
         {
-            Disciplina d = db.Disciplinas.Where(x =>
+            Disciplina d = _schoolContext.Disciplinas.Where(x =>
                 x.Nome.Contains(nome)
             )
                 .FirstOrDefault();
@@ -43,7 +48,7 @@ namespace Negocio.DAO
 
         public List<Disciplina> visualizarDisciplinas()
         {
-            List<Disciplina> disciplina = (List<Disciplina>)db.Disciplinas.ToList();
+            List<Disciplina> disciplina = (List<Disciplina>)_schoolContext.Disciplinas.ToList();
              
             return disciplina;
             

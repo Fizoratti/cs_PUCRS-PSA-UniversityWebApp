@@ -28,7 +28,12 @@ namespace Persistencia.Repositorio
             modelBuilder.Entity<Disciplina>().ToTable("Disciplina");
             modelBuilder.Entity<ItemHistorico>().ToTable("Historico");
             modelBuilder.Entity<Turma>().ToTable("Turma");
-            modelBuilder.Entity<Matricula>().ToTable("Matricula");            
+            modelBuilder.Entity<Matricula>().ToTable("Matricula");
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(p => p.Matriculas)
+                .WithOne(p => p.ApplicationUser)
+                .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }

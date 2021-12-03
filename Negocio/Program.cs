@@ -25,7 +25,7 @@ namespace Negocio
 
             //Front
             
-            Facade facade = new Facade();
+            //Facade facade = new Facade();
             
 
 
@@ -43,7 +43,7 @@ namespace Negocio
 
             //DAOMatriculas _matriculas = new DAOMatriculasEF();
 
-            facade.Matricular(5, "15111090");
+            //facade.Matricular(5, "15111090");
 
             Console.WriteLine("Metodo matricular executado");
 
@@ -59,10 +59,10 @@ namespace Negocio
 
             ;
 
-            foreach (Matricula m in facade.Listar("12b0a417-67f2-4eb3-abdc-61c0078e128a"))
-            {
-                Console.WriteLine(m.ToString());
-            }
+            //foreach (Matricula m in facade.Listar("12b0a417-67f2-4eb3-abdc-61c0078e128a"))
+            //{
+            //    Console.WriteLine(m.ToString());
+            //}
 
             Console.WriteLine("Fim.");
 

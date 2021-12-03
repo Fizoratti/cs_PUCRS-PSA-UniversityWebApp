@@ -7,38 +7,31 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Entidades.Models;
 using Persistencia.Repositorio;
+using Negocio;
 
 namespace UniversityWebApp.Controllers
 {
     public class MatriculasController : Controller
     {
+        private readonly Facade _facade;
         private readonly SchoolContext _context;
 
-        public MatriculasController(SchoolContext context)
+        public MatriculasController(Facade facade, SchoolContext context)
         {
+            _facade = facade;
             _context = context;
         }
 
         // GET: Matriculas
         public async Task<IActionResult> Index()
         {
-            var res = NotFound();
-
-            List<Matricula> matriculas = null;
-
-            if (User.Identity.IsAuthenticated)
-            {
-                ApplicationUser user = _context.ApplicationUser.FirstOrDefault();
-                matriculas = await _context.Matriculas.Include(m => m.Turma)
-                                .Where(e => e.ApplicationUser.Matricula == user.Matricula).ToListAsync();
-            }
-
+            var emailDoUsuario = User.Identity.Name;
+            var matriculas = await _facade.ListarMatriculas(emailDoUsuario);
             if (matriculas != null)
             {
                 return View(matriculas);
             }
-
-            return res;
+            return NotFound();
         }
 
         // GET: Matriculas/Details/5
@@ -140,20 +133,15 @@ namespace UniversityWebApp.Controllers
         // GET: Matriculas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            var matricula = await _context.Matriculas
-                .Include(m => m.Turma)
-                .FirstOrDefaultAsync(m => m.MatriculaID == id);
-            if (matricula == null)
-            {
-                return NotFound();
-            }
+            var emailDoUsuario = User.Identity.Name;
+            await _facade.Desmatricular(id.Value, emailDoUsuario);
 
-            return View(matricula);
+            return RedirectToAction("index");
         }
 
         // POST: Matriculas/Delete/5

@@ -8,7 +8,7 @@ using Entidades.Models;
 
 namespace Negocio.DAO
 {
-    interface DAOHistorico
+    public interface DAOHistorico
     {
         List<ItemHistorico> buscarHistorico(string applicationUserMatricula);
     }

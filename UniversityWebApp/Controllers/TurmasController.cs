@@ -7,33 +7,41 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Entidades.Models;
 using Persistencia.Repositorio;
+using Negocio;
 
 namespace UniversityWebApp.Controllers
 {
     public class TurmasController : Controller
     {
         private readonly SchoolContext _context;
+        private readonly Facade _facade;
 
-        public TurmasController(SchoolContext context)
+        public TurmasController(SchoolContext context, Facade facade)
         {
             _context = context;
+            _facade = facade;
         }
 
         // GET: Turmas
         public async Task<IActionResult> Index(string searchString)
         {
-            ViewData["CurrentFilter"] = searchString;
-
-            var turmas = from t in _context.Turma
-                            select t;
-            if (!String.IsNullOrEmpty(searchString))
+            var turmas = await _facade.ListarTurmas(searchString);
+            return View(turmas);
+        }
+        
+        // Aqui fica coisas de HTML, como pegar o User.Identity e retornar uma action (como uma view ou um redirect
+        public async Task<IActionResult> Matricular(int id)
+        {
+            try
             {
-                turmas = turmas.Where(t => t.Disciplina.Codcred.Contains(searchString)
-                                    || t.Horario.Contains(searchString)
-                                    || t.Numero.Contains(searchString));
+                var emailDoUsuario = User.Identity.Name;
+                await _facade.Matricular(id, emailDoUsuario);
+                return RedirectToAction("Index", "Matriculas");
             }
-            return View(await turmas.AsNoTracking().ToListAsync());
-            // return View(await _context.Turma.ToListAsync());
+            catch(ArgumentException excecao)
+            {
+                return RedirectToAction("Index", "Error", new { Error = excecao.Message });
+            }
         }
 
         // GET: Turmas/Details/5
