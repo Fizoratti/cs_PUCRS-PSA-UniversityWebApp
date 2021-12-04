@@ -13,11 +13,13 @@
         <h3>Bem vindo ao Matrículas PSA @User.Identity.Name!</h3>
     </div>
     <h3>Sou Aluno</h3>
+    <hr>
     <div class="row mb-5">
         <div class="col-md-4">
-            <a class="text-decoration-none text-reset" href="#">
+            <a class="text-decoration-none text-reset" asp-area="" asp-controller="Matriculas"
+                               asp-action="Index">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <h5 class="card-title"><i class="fa fa-calendar"></i> Grade de matriculas</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                     </div>
@@ -25,9 +27,10 @@
             </a>
         </div>
         <div class="col-md-4">
-            <a class="text-decoration-none text-reset" href="#">
+            <a class="text-decoration-none text-reset" asp-area="" asp-controller="Historico"
+                               asp-action="Index">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <h5 class="card-title"><i class="fa fa-book"></i> Historico</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                         
@@ -36,9 +39,10 @@
             </a>
         </div>
         <div class="col-md-4">
-            <a class="text-decoration-none text-reset" href="#">
+            <a class="text-decoration-none text-reset" asp-area="" asp-controller="Turmas"
+                               asp-action="Index">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <h5 class="card-title"><i class="fa fa-group"></i> Turmas</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                         
@@ -56,9 +60,10 @@ else
     </div>
     <div class="row mb-5">
         <div class="col-md-4">
-            <a class="text-decoration-none text-reset" href="#">
+            <a class="text-decoration-none text-reset" asp-area="" asp-controller="Turmas"
+                               asp-action="Index">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <h5 class="card-title"><i class="fa fa-group"></i> Turmas</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                         
