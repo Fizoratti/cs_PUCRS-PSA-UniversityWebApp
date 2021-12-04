@@ -1,0 +1,51 @@
+﻿@model Entidades.Models.Matricula
+
+@{
+    ViewData["Title"] = "GradeHorario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Grade de Horários</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+         <table style="border: 2px; border-style: solid;">
+            <tr height="20px" style="border: 2px; border-style: solid;">
+                <td height="20px" style="border: 2px; border-style: solid;"><label>2LM</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>3LM</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>4LM</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>5LM</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>6LM</label></td>
+            </tr>
+            <tr style="border: 2px; border-style: solid;">
+                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
+            </tr>
+            <tr style="border: 2px; border-style: solid;">
+                <td height="20px" style="border: 2px; border-style: solid;"><label>2NP</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>3NP</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>4NP</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>5NP</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>6NP</label></td>
+            </tr>
+            <tr style="border: 2px; border-style: solid;">
+                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
