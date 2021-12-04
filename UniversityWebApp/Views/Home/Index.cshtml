@@ -10,7 +10,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <div class="jumbotron">
-        <h3>Bem vindo ao Matrículas PSA @User.Identity.Name!</h3>
+        <h3>Bem vindo ao Matrículas PSA, @UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Nome!</h3>
     </div>
     <h3>Sou Aluno</h3>
     <hr>

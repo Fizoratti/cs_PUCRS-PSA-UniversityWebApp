@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistencia.Migrations
 {
-    public partial class NewModels : Migration
+    public partial class AdicionaApplicationUserAdmin : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,6 +28,7 @@ namespace Persistencia.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Matricula = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: true),
                     Nome = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
+                    Admin = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -223,18 +224,18 @@ namespace Persistencia.Migrations
                 {
                     MatriculaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ApplicationUserID = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     TurmaID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Matricula", x => x.MatriculaID);
                     table.ForeignKey(
-                        name: "FK_Matricula_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
+                        name: "FK_Matricula_AspNetUsers_ApplicationUserID",
+                        column: x => x.ApplicationUserID,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Matricula_Turma_TurmaID",
                         column: x => x.TurmaID,
@@ -293,9 +294,9 @@ namespace Persistencia.Migrations
                 column: "DisciplinaID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Matricula_ApplicationUserId",
+                name: "IX_Matricula_ApplicationUserID",
                 table: "Matricula",
-                column: "ApplicationUserId");
+                column: "ApplicationUserID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Matricula_TurmaID",

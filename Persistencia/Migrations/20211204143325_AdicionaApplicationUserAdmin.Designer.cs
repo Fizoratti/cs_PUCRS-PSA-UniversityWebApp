@@ -10,8 +10,8 @@ using Persistencia.Repositorio;
 namespace Persistencia.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20211117230312_NewModels")]
-    partial class NewModels
+    [Migration("20211204143325_AdicionaApplicationUserAdmin")]
+    partial class AdicionaApplicationUserAdmin
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,11 @@ namespace Persistencia.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Admin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -145,7 +150,7 @@ namespace Persistencia.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApplicationUserId")
+                    b.Property<string>("ApplicationUserID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("TurmaID")
@@ -153,7 +158,7 @@ namespace Persistencia.Migrations
 
                     b.HasKey("MatriculaID");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("ApplicationUserID");
 
                     b.HasIndex("TurmaID");
 
@@ -341,11 +346,12 @@ namespace Persistencia.Migrations
             modelBuilder.Entity("Entidades.Models.Matricula", b =>
                 {
                     b.HasOne("Entidades.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
+                        .WithMany("Matriculas")
+                        .HasForeignKey("ApplicationUserID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Entidades.Models.Turma", "Turma")
-                        .WithMany()
+                        .WithMany("Matriculas")
                         .HasForeignKey("TurmaID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -420,6 +426,13 @@ namespace Persistencia.Migrations
             modelBuilder.Entity("Entidades.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Historico");
+
+                    b.Navigation("Matriculas");
+                });
+
+            modelBuilder.Entity("Entidades.Models.Turma", b =>
+                {
+                    b.Navigation("Matriculas");
                 });
 #pragma warning restore 612, 618
         }

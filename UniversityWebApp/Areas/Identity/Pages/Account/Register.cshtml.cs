@@ -47,6 +47,19 @@ namespace UniversityWebApp.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [StringLength(40, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
+            [Display(Name = "Nome")]
+            public string Nome { get; set; }
+
+            [Required]
+            [StringLength(11, ErrorMessage = "The {0} must be {1} characters long.", MinimumLength = 8)]
+            [Display(Name = "Matrícula")]
+            public string Matricula { get; set; }
+
+            [Display(Name = "Coordenador")]
+            public bool Admin { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -75,7 +88,13 @@ namespace UniversityWebApp.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser { 
+                    UserName = Input.Email, 
+                    Email = Input.Email,
+                    Nome = Input.Nome,
+                    Matricula = Input.Matricula,
+                    Admin = Input.Admin,
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

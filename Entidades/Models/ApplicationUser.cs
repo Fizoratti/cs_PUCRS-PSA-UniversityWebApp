@@ -18,6 +18,10 @@ namespace Entidades.Models
         [PersonalData]
         public string Nome { get; set; }
 
+        [Display(Name = "Coordenador")]
+        [PersonalData]
+        public bool Admin { get; set; }
+
         public virtual ICollection<ItemHistorico> Historico { get; set; }
         public virtual ICollection<Matricula> Matriculas { get; set; }
         public ICollection<string> Horarios
