@@ -67,6 +67,7 @@ namespace UniversityWebApp.Controllers
             ApplicationUser user = _context.ApplicationUser.FirstOrDefault();
             user.Matriculas = await _facade.ListarMatriculas(user.Email);
 
+            if (user.Matriculas.Count == 0) { return View(); };
 
             try { ViewData["2LM"] = user.Matriculas.Where(p => p.Turma.Horario.Contains("2LM")).FirstOrDefault().Turma.Disciplina.Nome; } catch (Exception e) { ViewData["2LM"] = "-"; }
             try { ViewData["3LM"] = user.Matriculas.Where(p => p.Turma.Horario.Contains("3LM")).FirstOrDefault().Turma.Disciplina.Nome; } catch (Exception e) { ViewData["3LM"] = "-"; }
