@@ -64,21 +64,21 @@ namespace UniversityWebApp.Controllers
         public async Task<IActionResult> GradeHorario()
         {
 
-            ApplicationUser user = _context.ApplicationUser.FirstOrDefault();
+            ApplicationUser user = _facade.UsuarioComEmail(User.Identity.Name).Result;
             user.Matriculas = await _facade.ListarMatriculas(user.Email);
 
             if (user.Matriculas.Count == 0) { return View(); };
 
-            try { ViewData["2LM"] = user.Matriculas.Where(p => p.Turma.Horario.Contains("2LM")).FirstOrDefault().Turma.Disciplina.Nome; } catch (Exception e) { ViewData["2LM"] = "-"; }
-            try { ViewData["3LM"] = user.Matriculas.Where(p => p.Turma.Horario.Contains("3LM")).FirstOrDefault().Turma.Disciplina.Nome; } catch (Exception e) { ViewData["3LM"] = "-"; }
-            try { ViewData["4LM"] = user.Matriculas.Where(p => p.Turma.Horario.Contains("4LM")).FirstOrDefault().Turma.Disciplina.Nome; } catch (Exception e) { ViewData["4LM"] = "-"; }
-            try { ViewData["5LM"] = user.Matriculas.Where(p => p.Turma.Horario.Contains("5LM")).FirstOrDefault().Turma.Disciplina.Nome; } catch (Exception e) { ViewData["5LM"] = "-"; }
-            try { ViewData["6LM"] = user.Matriculas.Where(p => p.Turma.Horario.Contains("6LM")).FirstOrDefault().Turma.Disciplina.Nome; } catch (Exception e) { ViewData["6LM"] = "-"; }
-            try { ViewData["2NP"] = user.Matriculas.Where(p => p.Turma.Horario.Contains("2NP")).FirstOrDefault().Turma.Disciplina.Nome; } catch (Exception e) { ViewData["2NP"] = "-"; }
-            try { ViewData["3NP"] = user.Matriculas.Where(p => p.Turma.Horario.Contains("3NP")).FirstOrDefault().Turma.Disciplina.Nome; } catch (Exception e) { ViewData["3NP"] = "-"; }
-            try { ViewData["4NP"] = user.Matriculas.Where(p => p.Turma.Horario.Contains("4NP")).FirstOrDefault().Turma.Disciplina.Nome; } catch (Exception e) { ViewData["4NP"] = "-"; }
-            try { ViewData["5NP"] = user.Matriculas.Where(p => p.Turma.Horario.Contains("5NP")).FirstOrDefault().Turma.Disciplina.Nome; } catch (Exception e) { ViewData["5NP"] = "-"; }
-            try { ViewData["6NP"] = user.Matriculas.Where(p => p.Turma.Horario.Contains("6NP")).FirstOrDefault().Turma.Disciplina.Nome; } catch (Exception e) { ViewData["6NP"] = "-"; }
+            try { ViewData["2LM"] = user.Matriculas.FirstOrDefault(p => p.Turma.Horario.Contains("2LM")).Turma.Disciplina.Nome; } catch (Exception e) { ViewData["2LM"] = "-"; }
+            try { ViewData["3LM"] = user.Matriculas.FirstOrDefault(p => p.Turma.Horario.Contains("3LM")).Turma.Disciplina.Nome; } catch (Exception e) { ViewData["3LM"] = "-"; }
+            try { ViewData["4LM"] = user.Matriculas.FirstOrDefault(p => p.Turma.Horario.Contains("4LM")).Turma.Disciplina.Nome; } catch (Exception e) { ViewData["4LM"] = "-"; }
+            try { ViewData["5LM"] = user.Matriculas.FirstOrDefault(p => p.Turma.Horario.Contains("5LM")).Turma.Disciplina.Nome; } catch (Exception e) { ViewData["5LM"] = "-"; }
+            try { ViewData["6LM"] = user.Matriculas.FirstOrDefault(p => p.Turma.Horario.Contains("6LM")).Turma.Disciplina.Nome; } catch (Exception e) { ViewData["6LM"] = "-"; }
+            try { ViewData["2NP"] = user.Matriculas.FirstOrDefault(p => p.Turma.Horario.Contains("2NP")).Turma.Disciplina.Nome; } catch (Exception e) { ViewData["2NP"] = "-"; }
+            try { ViewData["3NP"] = user.Matriculas.FirstOrDefault(p => p.Turma.Horario.Contains("3NP")).Turma.Disciplina.Nome; } catch (Exception e) { ViewData["3NP"] = "-"; }
+            try { ViewData["4NP"] = user.Matriculas.FirstOrDefault(p => p.Turma.Horario.Contains("4NP")).Turma.Disciplina.Nome; } catch (Exception e) { ViewData["4NP"] = "-"; }
+            try { ViewData["5NP"] = user.Matriculas.FirstOrDefault(p => p.Turma.Horario.Contains("5NP")).Turma.Disciplina.Nome; } catch (Exception e) { ViewData["5NP"] = "-"; }
+            try { ViewData["6NP"] = user.Matriculas.FirstOrDefault(p => p.Turma.Horario.Contains("6NP")).Turma.Disciplina.Nome; } catch (Exception e) { ViewData["6NP"] = "-"; }
 
             return View();
         }

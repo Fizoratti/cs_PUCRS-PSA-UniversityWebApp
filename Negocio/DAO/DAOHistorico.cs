@@ -10,6 +10,6 @@ namespace Negocio.DAO
 {
     public interface DAOHistorico
     {
-        List<ItemHistorico> buscarHistorico(string applicationUserMatricula);
+        public Task<IEnumerable<ItemHistorico>> buscarHistorico(string applicationUserMatricula);
     }
 }

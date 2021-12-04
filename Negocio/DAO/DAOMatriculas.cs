@@ -11,7 +11,7 @@ namespace Negocio.DAO
     public interface DAOMatriculas
     {
         List<Matricula> buscarMatriculas(string applicationUserMatricula);
-        Matricula buscarMatriculas(int id);
+        Matricula buscarMatricula(int id);
         void matricularAluno(int id, string applicationUserMatricula);
         bool editarMatriculaAluno(int id);
         bool excluirMatriculaAluno(int id);

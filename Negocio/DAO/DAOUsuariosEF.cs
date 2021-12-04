@@ -10,9 +10,9 @@ namespace Negocio.DAO
     {
         private readonly SchoolContext _context;
 
-        public DAOUsuariosEF(SchoolContext context)
+        public DAOUsuariosEF(SchoolContext schoolContext)
         {
-            _context = context;
+            _context = schoolContext;
         }
 
         public async Task Atualiza(ApplicationUser usuario)

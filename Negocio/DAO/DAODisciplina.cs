@@ -8,7 +8,7 @@ namespace Negocio.DAO
     public interface DAODisciplina
     {
         //Visualizar disciplinas, turmas e vagas disponíveis para sua matrícula
-        List<Disciplina> visualizarDisciplinas();
+        Task<IEnumerable<Disciplina>> ListarDisciplinas();
 
         //retornar uma disciplina
         Disciplina buscarDiciplinaPorNome(String nome);
