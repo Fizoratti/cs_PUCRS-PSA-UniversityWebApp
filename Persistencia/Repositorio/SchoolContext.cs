@@ -35,6 +35,10 @@ namespace Persistencia.Repositorio
                 .WithOne(p => p.ApplicationUser)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(p => p.Admin)
+                .HasDefaultValue(false);
+
             base.OnModelCreating(modelBuilder);
         }
     }

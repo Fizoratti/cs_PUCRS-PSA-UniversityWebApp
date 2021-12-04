@@ -14,10 +14,12 @@
     <thead>
         <tr>
             <th>
+                Codcred
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Disciplina)
             </th>
             <th>
-                @* @Html.DisplayNameFor(model => model.AnoSemestre)*@
                 Semestre
             </th>
             <th>
@@ -30,7 +32,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DisciplinaID)
+                @Html.DisplayFor(modelItem => item.Disciplina.Codcred)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disciplina.Nome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AnoSemestre)
@@ -39,10 +44,10 @@
                 @Html.DisplayFor(modelItem => item.Nota)
             </td>
             <!---<td>
-                <a asp-action="Edit" asp-route-id="@item.ItemHistoricoID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ItemHistoricoID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ItemHistoricoID">Delete</a>
-            </td>-->
+        <a asp-action="Edit" asp-route-id="@item.ItemHistoricoID">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.ItemHistoricoID">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.ItemHistoricoID">Delete</a>
+    </td>-->
         </tr>
 }
     </tbody>

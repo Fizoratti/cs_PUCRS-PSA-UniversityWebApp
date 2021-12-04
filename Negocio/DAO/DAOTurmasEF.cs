@@ -12,10 +12,9 @@ namespace Negocio.DAO
     {
         private SchoolContext _context;
 
-
-        public DAOTurmasEF(SchoolContext context)
+        public DAOTurmasEF(SchoolContext schoolContext)
         {
-            _context = context;
+            _context = schoolContext;
         }
 
         public List<Turma> buscarTurmas(string searchString)
@@ -45,19 +44,21 @@ namespace Negocio.DAO
             return turma;
         }
 
-        public bool criarTurma(Turma turma)
+        public Task criarTurma(Turma turma)
         {
-            return true;
+            throw new NotImplementedException();
         }
 
-        public bool editarTurma(Turma turma)
+        public Task editarTurma(Turma turma)
         {
-            return true;
+            throw new NotImplementedException();
         }
 
-        public bool deletarTurma(int id)
+        public async Task deletarTurma(int id)
         {
-            return true;
+            _context.Turma.Remove(BuscarTurmaById(id));
+
+            await _context.SaveChangesAsync();
         }
 
         public Task<bool> DiminuirVaga(int turmaID)

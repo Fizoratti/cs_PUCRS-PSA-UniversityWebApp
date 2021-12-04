@@ -120,7 +120,7 @@ namespace UniversityWebApp.Controllers
             {
                 try
                 {
-                    _context.Update(turma);
+                    _context.Turma.Update(turma);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

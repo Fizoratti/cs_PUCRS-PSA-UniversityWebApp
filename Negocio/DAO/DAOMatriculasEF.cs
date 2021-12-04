@@ -9,24 +9,24 @@ namespace Negocio.DAO
 {
     public class DAOMatriculasEF : DAOMatriculas
     {
-        private readonly SchoolContext _schoolContext;
+        private readonly SchoolContext _context;
 
         public DAOMatriculasEF(SchoolContext schoolContext)
         {
-            this._schoolContext = schoolContext;
+            this._context = schoolContext;
         }
 
         public List<Matricula> buscarMatriculas(string applicationUserMatricula){
             
-            var matriculas = _schoolContext.Matriculas
+            var matriculas = _context.Matriculas
                                            .Include(m => m.Turma)
                                             .Where(e => e.ApplicationUser.Matricula == applicationUserMatricula).ToList();
 
             return matriculas;
         }
 
-        public Matricula buscarMatriculas(int id){
-            Matricula matricula = _schoolContext.Matriculas
+        public Matricula buscarMatricula(int id){
+            Matricula matricula = _context.Matriculas
                 .Include(m => m.Turma)
                 .FirstOrDefault(m => m.MatriculaID == id);
 
@@ -40,7 +40,7 @@ namespace Negocio.DAO
 
             //matricula.ApplicationUser.Matricula = applicationUserMatricula;
 
-            ApplicationUser user = _schoolContext.ApplicationUser.Where(x => x.Matricula.Contains(applicationUserMatricula)).Single();
+            ApplicationUser user = _context.ApplicationUser.Where(x => x.Matricula.Contains(applicationUserMatricula)).Single();
 
             Matricula matricula = new Matricula
             {
@@ -48,16 +48,18 @@ namespace Negocio.DAO
                 TurmaID = turmaID,
             };
 
-            _schoolContext.Matriculas.Add(matricula);
+            user.Matriculas.Add(matricula);
 
-            _schoolContext.SaveChanges();
+            _context.Matriculas.Add(matricula);
+
+            _context.SaveChanges();
           
         }
 
         public async Task Salvar(Matricula matricula)
         {
-            await _schoolContext.Matriculas.AddAsync(matricula);
-            await _schoolContext.SaveChangesAsync();
+            await _context.Matriculas.AddAsync(matricula);
+            await _context.SaveChangesAsync();
         }
 
         public bool editarMatriculaAluno(int id){

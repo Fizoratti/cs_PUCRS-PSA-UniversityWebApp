@@ -7,38 +7,36 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Entidades.Models;
 using Persistencia.Repositorio;
+using Negocio;
 
 namespace UniversityWebApp.Controllers
 {
     public class HistoricoController : Controller
     {
         private readonly SchoolContext _context;
+        private readonly Facade _negocio;
 
-        public HistoricoController(SchoolContext context)
+        public HistoricoController(Facade negocio, SchoolContext context)
         {
+            _negocio = negocio;
             _context = context;
         }
 
         // GET: Historico
         public async Task<IActionResult> Index()
         {
-            var res = NotFound();
-
-            List<ItemHistorico> historico = null;
-
             if (User.Identity.IsAuthenticated)
             {
-                ApplicationUser user = _context.ApplicationUser.FirstOrDefault();
-                historico = await _context.Historico
-                                .Where(e => e.ApplicationUser.Matricula == user.Matricula).ToListAsync();
+                ApplicationUser user = _negocio.UsuarioComEmail(User.Identity.Name).Result;
+                var historico = await _negocio.ListarHistorico(user.Matricula);
+
+                if (historico != null)
+                {
+                    return View(historico);
+                }
             }
 
-            if (historico != null)
-            {
-                return View(historico);
-            }
-
-            return res;
+            return NotFound();
         }
 
         // GET: Historico/Details/5

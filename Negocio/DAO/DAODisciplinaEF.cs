@@ -12,17 +12,17 @@ namespace Negocio.DAO
 {
     public class DAODisciplinaEF : DAODisciplina
     {
-        private readonly SchoolContext _schoolContext;
+        private readonly SchoolContext _context;
 
         public DAODisciplinaEF(SchoolContext schoolContext)
         {
-            this._schoolContext = schoolContext;
+            this._context = schoolContext;
         }
 
 
         public async Task<Disciplina> buscarDiciplinaPorCodCred(string codCred)
         {
-            var disciplina = await _schoolContext.Disciplinas.Where(x =>
+            var disciplina = await _context.Disciplinas.Where(x =>
                 x.Codcred.Contains(codCred)
             ).FirstOrDefaultAsync();
 
@@ -31,7 +31,7 @@ namespace Negocio.DAO
 
         public Disciplina buscarDiciplinaPorNome(string nome)
         {
-            Disciplina d = _schoolContext.Disciplinas.Where(x =>
+            Disciplina d = _context.Disciplinas.Where(x =>
                 x.Nome.Contains(nome)
             )
                 .FirstOrDefault();
@@ -46,12 +46,26 @@ namespace Negocio.DAO
         //    return disciplina;
         //}
 
-        public List<Disciplina> visualizarDisciplinas()
+        public async Task<IEnumerable<Disciplina>> ListarDisciplinas()
         {
-            List<Disciplina> disciplina = (List<Disciplina>)_schoolContext.Disciplinas.ToList();
-             
-            return disciplina;
-            
+            var disciplina = _context.Disciplinas.AsQueryable();
+            return await disciplina.ToListAsync();
+        }
+
+        public async Task<IEnumerable<ItemHistorico>> buscarHistorico(string applicationUserMatricula)
+        {
+
+            var historico = _context
+                .Historico
+                .Include(e => e.ApplicationUser)
+                .Include(e => e.Disciplina)
+                .AsQueryable();
+            if (!string.IsNullOrEmpty(applicationUserMatricula))
+            {
+                historico = historico.Where(e =>
+                    e.ApplicationUser.Matricula == applicationUserMatricula);
+            }
+            return await historico.ToListAsync();
         }
     }
 }

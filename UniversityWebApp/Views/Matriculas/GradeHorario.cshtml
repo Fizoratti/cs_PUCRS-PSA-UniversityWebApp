@@ -1,4 +1,5 @@
-﻿@model Entidades.Models.Matricula
+﻿@model Entidades.Models.ApplicationUser 
+
 
 @{
     ViewData["Title"] = "GradeHorario";
@@ -9,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-         <table style="border: 2px; border-style: solid;">
+        <table style="border: 2px; border-style: solid;">
             <tr height="20px" style="border: 2px; border-style: solid;">
                 <td height="20px" style="border: 2px; border-style: solid;"><label>2LM</label></td>
                 <td height="20px" style="border: 2px; border-style: solid;"><label>3LM</label></td>
@@ -18,11 +19,11 @@
                 <td height="20px" style="border: 2px; border-style: solid;"><label>6LM</label></td>
             </tr>
             <tr style="border: 2px; border-style: solid;">
-                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;">@ViewData["2LM"] </td>
+                <td height="20px" style="border: 2px; border-style: solid;">@ViewData["3LM"] </td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["4LM"] </label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["5LM"] </label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["6LM"] </label></td>
             </tr>
             <tr style="border: 2px; border-style: solid;">
                 <td height="20px" style="border: 2px; border-style: solid;"><label>2NP</label></td>
@@ -32,11 +33,11 @@
                 <td height="20px" style="border: 2px; border-style: solid;"><label>6NP</label></td>
             </tr>
             <tr style="border: 2px; border-style: solid;">
-                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>Matricula</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["2NP"] </label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["3NP"]</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["4NP"]</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["5NP"]</label></td>
+                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["6NP"]</label></td>
             </tr>
         </table>
     </div>

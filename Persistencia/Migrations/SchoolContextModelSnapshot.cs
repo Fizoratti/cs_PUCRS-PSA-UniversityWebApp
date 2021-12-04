@@ -27,6 +27,11 @@ namespace Persistencia.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Admin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -340,10 +345,11 @@ namespace Persistencia.Migrations
                 {
                     b.HasOne("Entidades.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Matriculas")
-                        .HasForeignKey("ApplicationUserID");
+                        .HasForeignKey("ApplicationUserID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Entidades.Models.Turma", "Turma")
-                        .WithMany()
+                        .WithMany("Matriculas")
                         .HasForeignKey("TurmaID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -419,6 +425,11 @@ namespace Persistencia.Migrations
                 {
                     b.Navigation("Historico");
 
+                    b.Navigation("Matriculas");
+                });
+
+            modelBuilder.Entity("Entidades.Models.Turma", b =>
+                {
                     b.Navigation("Matriculas");
                 });
 #pragma warning restore 612, 618

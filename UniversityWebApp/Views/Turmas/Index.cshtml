@@ -1,4 +1,8 @@
-﻿@model IEnumerable<Entidades.Models.Turma>
+﻿@using Microsoft.AspNetCore.Identity
+@using Entidades.Models;
+@model IEnumerable<Entidades.Models.Turma>
+
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -33,7 +37,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Vagas)
-            </th>            
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -52,12 +56,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.VagasDisponiveis)
                 </td>
+
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.TurmaID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.TurmaID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.TurmaID">Delete</a>                    
+                    @if (UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Admin)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.TurmaID">Edit</a> <span> | </span>
+                        <a asp-action="Delete" asp-route-id="@item.TurmaID">Delete</a> <span> | </span>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.TurmaID">Detalhes</a> |
                     <a asp-action="Matricular" asp-route-id="@item.TurmaID">Solicitar Matrícula</a>
-                </td>                
+                </td>
             </tr>
         }
     </tbody>

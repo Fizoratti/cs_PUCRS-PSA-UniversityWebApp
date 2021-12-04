@@ -13,9 +13,9 @@ namespace Negocio.DAO
         List<Turma> buscarTurmas(string searchString);
         Task<IEnumerable<Turma>> ListarTurmas(string pesquisa);
         Turma BuscarTurmaById(int id);
-        bool criarTurma(Turma turma);
-        bool editarTurma(Turma turma);
-        bool deletarTurma(int id);
+        Task criarTurma(Turma turma);
+        Task editarTurma(Turma turma);
+        Task deletarTurma(int id);
         Task<Turma> ComId(int turmaID);
 
         Task Salvar(Turma turma);

@@ -3,25 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using Persistencia.Repositorio;
 using Entidades.Models;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Negocio.DAO
 {
     public class DAOHistoricoEF : DAOHistorico
     {
-        private readonly SchoolContext _schoolContext;
+        private readonly SchoolContext _context;
 
         public DAOHistoricoEF(SchoolContext schoolContext)
         {
-            this._schoolContext = schoolContext;
+            this._context = schoolContext;
         }
 
 
-        public List<ItemHistorico> buscarHistorico(string applicationUserMatricula){
+        public async Task<IEnumerable<ItemHistorico>> buscarHistorico(string applicationUserMatricula){
 
-            var historico = _schoolContext.Historico
-                                .Where(e => e.ApplicationUser.Matricula == applicationUserMatricula).ToList();
-
-            return historico;         
+            var historico = _context
+                .Historico
+                .Include(e => e.ApplicationUser)
+                .Include(e => e.Disciplina)
+                .AsQueryable();
+            if (!string.IsNullOrEmpty(applicationUserMatricula))
+            {
+                historico = historico.Where(e =>
+                    e.ApplicationUser.Matricula == applicationUserMatricula);  
+            }
+            return await historico.ToListAsync();
          }
     }
 }

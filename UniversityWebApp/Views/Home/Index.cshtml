@@ -10,48 +10,55 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <div class="jumbotron">
-        <h3>Bem vindo ao Matrículas PSA @User.Identity.Name!</h3>
+        <h3>Bem vindo ao Matrículas PSA, @UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Nome!</h3>
     </div>
-    <h3>Sou Aluno</h3>
-    <hr>
-    <div class="row mb-5">
-        <div class="col-md-4">
-            <a class="text-decoration-none text-reset" asp-area="" asp-controller="Matriculas"
-                               asp-action="Index">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h5 class="card-title"><i class="fa fa-calendar"></i> Grade de matriculas</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+
+    @if (UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Admin)
+    {
+        <partial name="Index_coordenador" />
+    }
+    else
+    {
+        <h3>Sou Aluno</h3>
+        <hr>
+        <div class="row mb-5">
+            <div class="col-md-4">
+                <a class="text-decoration-none text-reset" asp-area="" asp-controller="Matriculas"
+                                   asp-action="Index">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title"><i class="fa fa-calendar"></i> Grade de matriculas</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a class="text-decoration-none text-reset" asp-area="" asp-controller="Historico"
-                               asp-action="Index">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h5 class="card-title"><i class="fa fa-book"></i> Historico</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a class="text-decoration-none text-reset" asp-area="" asp-controller="Historico"
+                                   asp-action="Index">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title"><i class="fa fa-book"></i> Historico</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                         
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a class="text-decoration-none text-reset" asp-area="" asp-controller="Turmas"
-                               asp-action="Index">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h5 class="card-title"><i class="fa fa-group"></i> Turmas</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a class="text-decoration-none text-reset" asp-area="" asp-controller="Turmas"
+                                   asp-action="Index">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title"><i class="fa fa-group"></i> Turmas</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                         
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
-    </div> 
-    <partial name="Index_coordenador" />
+                </a>
+            </div>
+        </div> 
+    }
 }
 else
 {
