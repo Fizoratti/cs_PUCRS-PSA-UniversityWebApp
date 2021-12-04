@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Entidades.Models;
 @model IEnumerable<Entidades.Models.Turma>
-
+@inject SignInManager<ApplicationUser> SignManager
 @inject UserManager<ApplicationUser> UserManager
 
 @{
@@ -18,10 +18,14 @@
     </div>
 </form>
 
+@if (SignManager.IsSignedIn(User) && UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Admin)
+{
 
-<p>
-    <a asp-action="Create">Adicionar turma</a>
-</p>
+    <p>
+        <a asp-action="Create">Adicionar turma</a>
+    </p>
+}
+
 
 <table class="table table-striped table-bordered">
     <thead>
@@ -58,13 +62,17 @@
                 </td>
 
                 <td>
-                    @if (UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Admin)
+                    @if (SignManager.IsSignedIn(User) && UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Admin)
                     {
                         <a asp-action="Edit" asp-route-id="@item.TurmaID">Edit</a> <span> | </span>
                         <a asp-action="Delete" asp-route-id="@item.TurmaID">Delete</a> <span> | </span>
+                        <a asp-action="Details" asp-route-id="@item.TurmaID">Detalhes</a> <span>|</span>
                     }
-                    <a asp-action="Details" asp-route-id="@item.TurmaID">Detalhes</a> |
-                    <a asp-action="Matricular" asp-route-id="@item.TurmaID">Solicitar Matrícula</a>
+                    @if (SignManager.IsSignedIn(User))
+                    {
+                        <a asp-action="Matricular" asp-route-id="@item.TurmaID">Solicitar Matrícula</a>
+                    }
+
                 </td>
             </tr>
         }
