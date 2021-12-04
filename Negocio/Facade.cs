@@ -56,7 +56,7 @@ namespace Negocio
             return turmas;
         }
 
-        public async Task<IEnumerable<Matricula>> ListarMatriculas(string emailDoUsuario)
+        public async Task<ICollection<Matricula>> ListarMatriculas(string emailDoUsuario)
         {
             var usuario = await _usuarios.ComEmail(emailDoUsuario);
             return usuario.Matriculas;

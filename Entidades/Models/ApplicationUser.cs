@@ -89,33 +89,8 @@ namespace Entidades.Models
                         segundoHorario = segundoHorario + letra;
                     }
                 }
-
-
-
             }
-            var booleano = Horarios.Contains(primeiroHorario) || Horarios.Contains(segundoHorario);
-            return booleano;
-        }
-
-        private void teste()
-        {
-            foreach (Matricula matricula in Matriculas)
-            {
-                if (matricula.Turma.Horario.Length > 3)
-                {
-                    Horarios.Add(matricula.Turma.Horario);
-                }
-                else
-                {
-                    var teste = matricula.Turma.Horario.Split("");
-                    var primeiroHorario = teste[0] + teste[1] + teste[2];
-                    var segundoHorario = teste[3] + teste[4] + teste[5];
-                    Horarios.Add(primeiroHorario);
-                    Horarios.Add(segundoHorario);
-
-                }
-
-            }
+            return Horarios.Contains(primeiroHorario) || Horarios.Contains(segundoHorario);
         }
     }
 }
