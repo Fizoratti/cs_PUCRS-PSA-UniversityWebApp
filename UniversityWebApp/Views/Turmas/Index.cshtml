@@ -20,10 +20,10 @@
 
 @if (SignManager.IsSignedIn(User) && UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Admin)
 {
-
+    <!--
     <p>
         <a asp-action="Create">Adicionar turma</a>
-    </p>
+    </p>-->
 }
 
 
