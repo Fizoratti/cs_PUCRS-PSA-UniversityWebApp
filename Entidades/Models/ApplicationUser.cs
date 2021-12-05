@@ -66,9 +66,9 @@ namespace Entidades.Models
             Matriculas = new Collection<Matricula>();
         }
 
-        public bool ContemMatriculaParaTurma(Turma turma)
+        public bool ContemMatriculaParaDisciplina(Turma turma)
         {
-            return Matriculas.Any(p => p.TurmaID == turma.TurmaID);
+            return Matriculas.Any(p => p.Turma.DisciplinaID == turma.DisciplinaID);
         }
 
         public bool VerificaSeConflitaHorario(Turma turma)

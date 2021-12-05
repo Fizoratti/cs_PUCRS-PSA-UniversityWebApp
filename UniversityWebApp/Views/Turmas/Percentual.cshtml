@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Entidades.Models;
+@model IEnumerable<Entidades.Models.Turma>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Relatório de percentual de ocupação</h1>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <p>Codcred</p>
+            </th>
+            <th>
+                <p>Disciplina</p>
+            </th>
+
+            <th>
+                <p>Número da Turma</p>
+            </th>
+            <th>
+                <p>Quantidade de vagas</p>
+            </th>
+            <th>
+                <p>Vagas disponíveis</p>
+            </th>
+            <th>
+                <p>Percentual de ocupação (%)</p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disciplina.Codcred)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disciplina.Nome)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vagas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VagasDisponiveis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Percentual) %
+            </td>
+
+            <td>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

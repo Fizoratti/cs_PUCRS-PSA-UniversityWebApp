@@ -182,5 +182,21 @@ namespace UniversityWebApp.Controllers
         {
             return _context.Matriculas.Any(e => e.MatriculaID == id);
         }
+
+        [Route("Matriculas/AlunosMatriculados")]
+        public async Task<IActionResult> AlunosMatriulados()
+        {
+            var disciplinas = await _facade.ListarDisciplinas();
+            return View("AlunosMatriculados", disciplinas);
+
+        }
+        [Route("Matriculas/ListaAlunos")]
+        public async Task<IActionResult> ListaAlunos(string? codcred)
+        {
+            var alunos = await _facade.ListarAlunos(codcred);
+            ViewData["codcred"] = codcred;
+            return View("ListaAlunos",alunos);
+
+        }
     }
 }

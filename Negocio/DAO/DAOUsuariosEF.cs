@@ -2,6 +2,7 @@
 using Entidades.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Negocio.DAO
 {
@@ -29,6 +30,14 @@ namespace Negocio.DAO
                     .ThenInclude(p=> p.Turma)
                         .ThenInclude(p=> p.Disciplina)
                 .FirstOrDefaultAsync(p => p.Email == email);
+        }
+
+        public async Task<IEnumerable<ApplicationUser>> ListarAlunos(string disciplina)
+        {
+            var alunos = _context
+                .ApplicationUser.AsQueryable();
+           
+            return await alunos.ToListAsync();
         }
     }
 }

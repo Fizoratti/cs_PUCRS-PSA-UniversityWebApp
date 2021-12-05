@@ -28,8 +28,16 @@ namespace UniversityWebApp.Controllers
             var turmas = await _facade.ListarTurmas(searchString);
             return View(turmas);
         }
-        
-        // Aqui fica coisas de HTML, como pegar o User.Identity e retornar uma action (como uma view ou um redirect
+
+        public async Task<IActionResult> Percentual()
+        {
+            var turmas = await _facade.ListarTurmas(null);
+            return View("Percentual",turmas);
+         
+        }
+
+
+     
         public async Task<IActionResult> Matricular(int id)
         {
             try

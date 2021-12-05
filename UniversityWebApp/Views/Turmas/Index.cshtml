@@ -68,7 +68,7 @@
                         <a asp-action="Delete" asp-route-id="@item.TurmaID">Delete</a> <span> | </span>
                         <a asp-action="Details" asp-route-id="@item.TurmaID">Detalhes</a> <span>|</span>
                     }
-                    @if (SignManager.IsSignedIn(User))
+                    @if (SignManager.IsSignedIn(User) && !UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Admin)
                     {
                         <a asp-action="Matricular" asp-route-id="@item.TurmaID">Solicitar Matrícula</a>
                     }

@@ -13,7 +13,8 @@ namespace Entidades.Models
         public int DisciplinaID { get; set; }
         public virtual Disciplina Disciplina { get; set; }
         public string Horario { get; set; }
-        public string Numero { get; set; } 
+        public string Numero { get; set; }
+        public string Percentual => string.Format("{0:N}", (1-((double)VagasDisponiveis / (double)Vagas)) * 100);// (1/12)*100
         
         // capacidade da turma
         public int Vagas { get; private set; }

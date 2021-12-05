@@ -37,15 +37,16 @@ namespace Negocio
                 throw new ArgumentException("Não possui vagas disponíveis.");//Gerar erro de não há vagas
             }
 
-            if (usuario.ContemMatriculaParaTurma(turma))
+            if (usuario.ContemMatriculaParaDisciplina(turma))
             {
-                throw new ArgumentException("Esse usuário já possui uma matrícula para esta turma");
+                throw new ArgumentException("Esse usuário já possui uma matrícula para esta disciplina");
             }
 
             if (usuario.VerificaSeConflitaHorario(turma))
             {
                 throw new ArgumentException("Esse usuário tem conflito na grade de horários");
             }
+            
 
             var matricula = new Matricula()
             {
@@ -95,5 +96,10 @@ namespace Negocio
         {
             return await _disciplinas.ListarDisciplinas();
         }
+        public async Task<IEnumerable<ApplicationUser>> ListarAlunos(string disciplina)
+        {
+            return await _usuarios.ListarAlunos(disciplina);
+        }
+
     }
 }

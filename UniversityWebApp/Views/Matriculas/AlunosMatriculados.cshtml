@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Entidades.Models;
+@model IEnumerable<Entidades.Models.Disciplina>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Relatório de alunos matriculados</h1>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <p>Codcred</p>
+            </th>
+            <th>
+                <p>disciplina</p>
+            </th>
+            <th>
+                <p>relatório</p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codcred)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+            <a asp-action="ListaAlunos" asp-route-id="@item.DisciplinaID">Ver alunos matriculados</a>
+             </td>
+        </tr>
+        }
+    </tbody>
+</table>

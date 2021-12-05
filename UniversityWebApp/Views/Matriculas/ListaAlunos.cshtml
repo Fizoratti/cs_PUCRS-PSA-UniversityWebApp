@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Entidades.Models;
+@model IEnumerable<Entidades.Models.ApplicationUser>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Relatório de alunos matriculados</h1>
+<p>@ViewData["codcred"] </p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <p>Nome</p>
+            </th>
+            <th>
+                <p>Matricula</p>
+            </th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Matricula)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

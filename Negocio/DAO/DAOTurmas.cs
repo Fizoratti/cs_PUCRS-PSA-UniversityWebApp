@@ -21,5 +21,6 @@ namespace Negocio.DAO
         Task Salvar(Turma turma);
 
         Task<bool> DiminuirVaga(int turmaID);
+        
     }
 }
