@@ -19,18 +19,17 @@
             <th>
                 <p>Disciplina</p>
             </th>
-
             <th>
-                <p>Número da Turma</p>
+                <p>Turma</p>
             </th>
             <th>
-                <p>Quantidade de vagas</p>
+                <p>Vagas</p>
             </th>
             <th>
-                <p>Vagas disponíveis</p>
+                <p>Vacância</p>
             </th>
             <th>
-                <p>Percentual de ocupação (%)</p>
+                <p>Ocupação (%)</p>
             </th>
         </tr>
     </thead>
@@ -44,7 +43,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Disciplina.Nome)
             </td>
-
             <td>
                 @Html.DisplayFor(modelItem => item.Numero)
             </td>
@@ -56,9 +54,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Percentual) %
-            </td>
-
-            <td>
             </td>
         </tr>
         }

@@ -1,48 +1,67 @@
-﻿@model Entidades.Models.ApplicationUser 
+﻿@using Microsoft.AspNetCore.Identity
+@using Entidades.Models;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@model Entidades.Models.ApplicationUser
 
 
-@{
-    ViewData["Title"] = "GradeHorario";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h4>Grade de Horários</h4>
+@{ ViewData["Title"] = "GradeHorario";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+<h1>Declaração de Matrícula</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <table style="border: 2px; border-style: solid;">
-            <tr height="20px" style="border: 2px; border-style: solid;">
-                <td height="20px" style="border: 2px; border-style: solid;"><label>2LM</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>3LM</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>4LM</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>5LM</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>6LM</label></td>
-            </tr>
-            <tr style="border: 2px; border-style: solid;">
-                <td height="20px" style="border: 2px; border-style: solid;">@ViewData["2LM"] </td>
-                <td height="20px" style="border: 2px; border-style: solid;">@ViewData["3LM"] </td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["4LM"] </label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["5LM"] </label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["6LM"] </label></td>
-            </tr>
-            <tr style="border: 2px; border-style: solid;">
-                <td height="20px" style="border: 2px; border-style: solid;"><label>2NP</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>3NP</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>4NP</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>5NP</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>6NP</label></td>
-            </tr>
-            <tr style="border: 2px; border-style: solid;">
-                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["2NP"] </label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["3NP"]</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["4NP"]</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["5NP"]</label></td>
-                <td height="20px" style="border: 2px; border-style: solid;"><label>@ViewData["6NP"]</label></td>
-            </tr>
+<p><strong>Aluno</strong>: @UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Nome</p>
+<p><strong>Matrícula</strong>: @UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Matricula</p>
+<p><strong>Cusro</strong>: 4624 SISTEMAS DE INFORMAÇÃO</p>
+<p>
+    Declaro, para os devidos fins, que o aluno acima identificado está
+    regularmente matriculado no segundo semestre de 2021, no segundo nível,
+    conforme créditos cursados e matriculados, nas seguintes disciplinas/turmas:
+</p>
+<br />
+
+<div class="card">
+    <h5 class="card-header">Grade de Horários</h5>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Horários</th>
+                    <th scope="col">Segunda</th>
+                    <th scope="col">Terça</th>
+                    <th scope="col">Quarta</th>
+                    <th scope="col">Quinta</th>
+                    <th scope="col">Sexta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">LM</th>
+                    <td>@ViewData["2LM"]</td>
+                    <td>@ViewData["3LM"]</td>
+                    <td>@ViewData["4LM"]</td>
+                    <td>@ViewData["5LM"]</td>
+                    <td>@ViewData["6LM"]</td>
+                </tr>
+                <tr>
+                    <th scope="row">NP</th>
+                    <td>@ViewData["2NP"]</td>
+                    <td>@ViewData["3NP"]</td>
+                    <td>@ViewData["4NP"]</td>
+                    <td>@ViewData["5NP"]</td>
+                    <td>@ViewData["6NP"]</td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </div>
 
+<br />
+<p>
+    Declaro, outrossim, que o segundo semestre de 2021 iniciou em 2 de
+    agosto de 2021, e seu término está previsto para 6 de dezembro de 2021.
+</p>
+<br />
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

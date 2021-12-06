@@ -20,25 +20,31 @@
             <th>
                 <p>Horário</p>
             </th>
+            <th>
+                <p>Número</p>
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Turma.Disciplina.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Turma.Horario)
-                </td>
-                <td>
-                    <!-- <a asp-action="Edit" asp-route-id="@item.MatriculaID">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.MatriculaID">Details</a> |-->
-                    <a asp-action="Delete" asp-route-id="@item.MatriculaID">Retirar matricula</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Turma.Disciplina.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Turma.Horario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Turma.Numero)
+            </td>
+            <td>
+                <!-- <a asp-action="Edit" asp-route-id="@item.MatriculaID">Edit</a>
+        <a asp-action="Details" asp-route-id="@item.MatriculaID">Details</a> |-->
+                <a asp-action="Delete" asp-route-id="@item.MatriculaID">Retirar matricula</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

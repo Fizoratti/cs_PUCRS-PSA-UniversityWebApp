@@ -9,9 +9,10 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <div class="jumbotron">
-        <h3>Bem vindo ao Matrículas PSA, @UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Nome!</h3>
-    </div>
+<div class="jumbotron">
+    <h3>Seja bem vindo, @UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Nome!</h3>
+    <p class="lead">A Universidade Kubitschek é uma instituição comunitária de educação superior, que atua no ensino, na pesquisa e na extensão, em permanente interação com a sociedade, visando à formação de cidadãos responsáveis, autônomos, inovadores e solidários, com vistas ao desenvolvimento científico, cultural, social e econômico.</p>
+</div>
 
     @if (UserManager.Users.FirstOrDefault(user => user.Email == User.Identity.Name).Admin)
     {
@@ -27,7 +28,7 @@
                                    asp-action="Index">
                     <div class="card">
                         <div class="card-body text-center">
-                            <h5 class="card-title"><i class="fa fa-calendar"></i> Grade de matriculas</h5>
+                            <h5 class="card-title"><i class="fa fa-calendar"></i> Matrículas</h5>
                             <h6 class="card-subtitle mb-2 text-muted"></h6>
                         </div>
                     </div>
