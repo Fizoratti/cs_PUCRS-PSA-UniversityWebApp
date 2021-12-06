@@ -191,12 +191,25 @@ namespace UniversityWebApp.Controllers
 
         }
         [Route("Matriculas/ListaAlunos")]
-        public async Task<IActionResult> ListaAlunos(string? codcred)
-        {
-            var alunos = await _facade.ListarAlunos(codcred);
-            ViewData["codcred"] = codcred;
+        public async Task<IActionResult> ListaAlunos(int? disciplinaId)
+        { 
+            //ViewData["codcred"] = "Todas";
+
+            //if (disciplinaId != null)
+            //{
+            //    var disciplina = await _context.Disciplinas.FindAsync(disciplinaId);
+
+            //    if (disciplina != null)
+            //    {
+            //        ViewData["codcred"] = disciplina.Codcred;
+            //    } 
+            //}
+
+            var alunos = await _facade.ListarAlunos(disciplinaId);
+
             return View("ListaAlunos",alunos);
 
+            
         }
     }
 }

@@ -96,9 +96,9 @@ namespace Negocio
         {
             return await _disciplinas.ListarDisciplinas();
         }
-        public async Task<IEnumerable<ApplicationUser>> ListarAlunos(string disciplina)
+        public async Task<IEnumerable<ApplicationUser>> ListarAlunos(int? disciplinaId)
         {
-            return await _usuarios.ListarAlunos(disciplina);
+            return await _usuarios.ListarAlunos(disciplinaId);
         }
 
     }

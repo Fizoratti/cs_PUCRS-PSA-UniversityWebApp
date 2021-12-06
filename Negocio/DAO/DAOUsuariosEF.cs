@@ -32,12 +32,17 @@ namespace Negocio.DAO
                 .FirstOrDefaultAsync(p => p.Email == email);
         }
 
-        public async Task<IEnumerable<ApplicationUser>> ListarAlunos(string disciplina)
+        public async Task<IEnumerable<ApplicationUser>> ListarAlunos(int? disciplinaId)
         {
-            var alunos = _context
-                .ApplicationUser.AsQueryable();
-           
-            return await alunos.ToListAsync();
+            var usuarios = await _context
+                .ApplicationUser
+                .Include(p => p.Matriculas)
+                    .ThenInclude(p => p.Turma)
+                        .ThenInclude(p => p.Disciplina).ToListAsync();
+
+            var alunos = usuarios.FindAll(e => e.Admin == false);
+
+            return alunos;
         }
     }
 }

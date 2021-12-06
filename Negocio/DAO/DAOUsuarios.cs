@@ -8,6 +8,6 @@ namespace Negocio.DAO
     {
         Task<ApplicationUser> ComEmail(string emailDoUsuario);
         Task Atualiza(ApplicationUser usuario);
-        Task<IEnumerable<ApplicationUser>> ListarAlunos(string disciplina);
+        Task<IEnumerable<ApplicationUser>> ListarAlunos(int? disciplinaId);
     }
 }
